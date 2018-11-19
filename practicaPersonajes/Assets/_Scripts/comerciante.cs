@@ -16,8 +16,10 @@ public class Comerciante : MonoBehaviour
     void Start()
     {
         cambiarEstado(EstadoComerciante.MOVIENDOSE);
-        movimiento = new Movimiento(transform.position, transform.rotation.eulerAngles.z, 8.4f, 0.8f);
-        destination = new Vector2(-46.5f, -30.3f);
+        Rigidbody2D rigidbody = transform.GetComponent<Rigidbody2D>();
+        BoxCollider2D collider = transform.GetComponent<BoxCollider2D>();
+        movimiento = new Movimiento(rigidbody, collider, 18.4f);
+        destination = new Vector2(-32f, -20f);
     }
 
     void Update()
@@ -49,7 +51,5 @@ public class Comerciante : MonoBehaviour
             MonoBehaviour.print("LLegado a destino.");
             cambiarEstado(EstadoComerciante.EN_DESTINO);
         }
-        transform.rotation = movimiento.getRotation();
-        transform.position = movimiento.getPosition();
     }
 }
