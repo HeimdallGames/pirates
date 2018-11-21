@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+
 
 public class Comerciante : MonoBehaviour
 {
     public Movimiento movimiento;
-
     private Vector2 destination;
 
     //FSM
@@ -24,10 +25,10 @@ public class Comerciante : MonoBehaviour
     private EstadoComerciante estadoActual;
     void Start()
     {
+
         cambiarEstado(EstadoComerciante.MOVIENDOSE);
-        Rigidbody2D rigidbody = transform.GetComponent<Rigidbody2D>();
-        BoxCollider2D collider = transform.GetComponent<BoxCollider2D>();
-        movimiento = new Movimiento(rigidbody, collider, 18.4f);
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        movimiento = new Movimiento( agent );
         destination = new Vector2(-32f, -20f);
     }
 

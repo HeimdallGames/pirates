@@ -1,48 +1,39 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 public class Movimiento
 {
-    private float celerity;
-    Rigidbody2D rigidbody;
-    BoxCollider2D collider;
+    private NavMeshAgent navMesh;
     private const float extraEndDistance = 7.2f;
-    public Movimiento(Rigidbody2D newRigidbody, BoxCollider2D newCollider, float newCelerity)
+    public Movimiento(NavMeshAgent newNavMesh)
     {
-        rigidbody = newRigidbody;
-        collider = newCollider;
-        celerity = newCelerity;
-        rigidbody.velocity = Vector2.zero;
+        navMesh = newNavMesh;
     }
 
     public void stopMovement()
     {
-        rigidbody.velocity = Vector2.zero;
-        rigidbody.angularVelocity = 0;
-        rigidbody.inertia = 0;
-        rigidbody.isKinematic = true;
+        navMesh.isStopped = true;
     }
 
     public float distance( Vector2 destination){
-        return ( destination - rigidbody.position).magnitude;
+        return ( destination - getPos()).magnitude;
     }
     public Vector2 getPos(){
-        return rigidbody.position;
+        return navMesh.transform.position;
     }
     public bool updateMovement(float deltaTime, Vector2 destination)
     {
-        Vector2 distance = destination - rigidbody.position;
+        Vector2 distance = destination - getPos();
         if (distance.magnitude < extraEndDistance)
         {
             stopMovement();
-            rigidbody.position = destination;
             return true;
         }
         else
         {
-            rigidbody.isKinematic = false;
-            rigidbody.velocity = distance.normalized * celerity;
-            rigidbody.rotation = getAngle(distance) * Mathf.Rad2Deg;
+            navMesh.destination = destination;
+            navMesh.isStopped = false;
             return false;
         }
     }

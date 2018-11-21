@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class Isla : MonoBehaviour
 {
-    public Movimiento movimiento;
+    public Vector2 actualPos;
     public int posibleFelicidad(Comerciante comerciante_){
-        float distancia = movimiento.distance(comerciante_.movimiento.getPos());
+        float distancia = comerciante_.movimiento.distance(actualPos);
         MonoBehaviour.print("madera: "+comerciante_.madera+" oro: "+comerciante_.oro+" tabaco: "+comerciante_.tabaco+" comida: "+comerciante_.comida+" distancia: "+distancia);
         return Mathf.CeilToInt(distancia);
     }
 
     void Start()
     {
-        //Rigidbody2D rigidbody = transform.GetComponent<Rigidbody2D>();
-        //BoxCollider2D collider = transform.GetComponent<BoxCollider2D>();
-        //movimiento = new Movimiento(rigidbody, collider, 18.4f);
+        actualPos = new Vector2(transform.position.x,transform.position.y);
     }
 
     void Update()
