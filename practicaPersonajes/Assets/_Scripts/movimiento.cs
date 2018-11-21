@@ -6,7 +6,7 @@ public class Movimiento
     private float celerity;
     Rigidbody2D rigidbody;
     BoxCollider2D collider;
-    private const float extraEndDistance = 3.2f;
+    private const float extraEndDistance = 7.2f;
     public Movimiento(Rigidbody2D newRigidbody, BoxCollider2D newCollider, float newCelerity)
     {
         rigidbody = newRigidbody;
@@ -20,6 +20,7 @@ public class Movimiento
         rigidbody.velocity = Vector2.zero;
         rigidbody.angularVelocity = 0;
         rigidbody.inertia = 0;
+        rigidbody.isKinematic = true;
     }
 
     public bool updateMovement(float deltaTime, Vector2 destination)
@@ -33,6 +34,7 @@ public class Movimiento
         }
         else
         {
+            rigidbody.isKinematic = false;
             rigidbody.velocity = distance.normalized * celerity;
             rigidbody.rotation = getAngle(distance) * Mathf.Rad2Deg;
             return false;
