@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4907095804448992}
-  - component: {fileID: 114078419988392688}
+  - component: {fileID: 114850114234210864}
   m_Layer: 0
   m_Name: mundo
   m_TagString: Untagged
@@ -40,7 +40,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114078419988392688
+--- !u!114 &114850114234210864
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1836129082925576}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c906045d0eaf6b4693a11956fb7bc83, type: 3}
+  m_Script: {fileID: 11500000, guid: dbd79aab2976b15408c2d0e74f6bbef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  islas: []

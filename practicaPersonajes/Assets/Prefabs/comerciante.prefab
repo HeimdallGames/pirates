@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4686323897931792}
   - component: {fileID: 212380045484574620}
-  - component: {fileID: 114624217712950630}
+  - component: {fileID: 114609564392810000}
   - component: {fileID: 50383664650866692}
   - component: {fileID: 61823736048568804}
   m_Layer: 0
@@ -57,7 +57,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -88,7 +88,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.85, y: 7.64}
   m_EdgeRadius: 0
---- !u!114 &114624217712950630
+--- !u!114 &114609564392810000
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -96,9 +96,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1672789712550830}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4df888b95aac1744d8c6867651066b8d, type: 3}
+  m_Script: {fileID: 11500000, guid: bb77d72267fee6f43819ae46ac751418, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oro: 0
+  tabaco: 0
+  madera: 0
+  comida: 0
 --- !u!212 &212380045484574620
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -108,9 +112,11 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -123,6 +129,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -131,7 +138,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: af6eb6e26e2910e43a13fefcbee06379, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8ead738ba0b0fd64d85a5b2c80989e06, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4799510670854896}
   - component: {fileID: 212404401244340882}
-  - component: {fileID: 114392177524083656}
+  - component: {fileID: 114158270929360106}
   - component: {fileID: 61484620776084426}
   m_Layer: 0
   m_Name: isla
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 6.86, y: 5.26}
   m_EdgeRadius: 0
---- !u!114 &114392177524083656
+--- !u!114 &114158270929360106
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1041580731294036}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4e91ca4192843b45bdfaa4185e7a9a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 31916da82216e6c47a95764645bb8992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212404401244340882
@@ -87,9 +87,11 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -102,6 +104,7 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -110,7 +113,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d00ea5160d2e3e540895fe5bce747eac, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d8713fa4daf14d4c87e3cd1ba6b4533, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

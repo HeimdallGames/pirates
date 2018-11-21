@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class Comerciante : MonoBehaviour
 {
-    Movimiento movimiento;
-    Vector2 destination;
+    public Movimiento movimiento;
+
+    private Vector2 destination;
 
     //FSM
     private delegate void StateUpdate();
     private StateUpdate stateUpdate;
 
+    private Isla islaDestino;
+    private Pirata huyendoPirata;
+    public int oro = 0;
+    public int tabaco = 0;
+    public int madera = 0;
+    public int comida = 0;
+
     public enum EstadoComerciante { MOVIENDOSE, EN_DESTINO };
+   // public enum EstadoComerciante { ESPERAR_COMERCIO, COMERCIANDO, VIAJANDO_OTRA_LISTA, HUIR };
     private EstadoComerciante estadoActual;
     void Start()
     {
@@ -26,6 +35,7 @@ public class Comerciante : MonoBehaviour
     {
         stateUpdate();
     }
+
     public void cambiarEstado(EstadoComerciante nuevoEstado)
     {
         switch (nuevoEstado)

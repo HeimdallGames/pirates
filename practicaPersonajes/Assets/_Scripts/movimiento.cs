@@ -23,6 +23,12 @@ public class Movimiento
         rigidbody.isKinematic = true;
     }
 
+    public float distance( Vector2 destination){
+        return ( destination - rigidbody.position).magnitude;
+    }
+    public Vector2 getPos(){
+        return rigidbody.position;
+    }
     public bool updateMovement(float deltaTime, Vector2 destination)
     {
         Vector2 distance = destination - rigidbody.position;
