@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class Comerciante : MonoBehaviour
 {
     [HideInInspector] private Movimiento movimiento;
-    [SerializeField] private float extraEndDistance = 7.2f;
+    [SerializeField] private float extraEndDistance = 8.2f;
     [SerializeField] public Mundo mundo;
 
     //FSM
@@ -32,7 +32,7 @@ public class Comerciante : MonoBehaviour
         cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
         islaDestino = mundo.islas[0];
         NavMeshAgent agent = transform.GetChild(1).GetComponent<NavMeshAgent>();
-        movimiento = new Movimiento(agent, transform.GetChild(0),extraEndDistance);
+        movimiento = new Movimiento(agent, transform.GetChild(0), extraEndDistance);
         Canvas canvas = transform.GetChild(0).GetChild(0).GetComponent<Canvas>();
         canvasRecursos = new CanvasRecursos(canvas, oro, madera, tabaco, comida);
     }

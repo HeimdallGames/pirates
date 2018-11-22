@@ -18,7 +18,7 @@ public class Armada : MonoBehaviour
     void Start()
     {
         NavMeshAgent agent = transform.GetChild(1).GetComponent<NavMeshAgent>();
-        movimiento = new Movimiento(agent, transform.GetChild(0),extraEndDistance,patrollRadius,extraPatroll);
+        movimiento = new Movimiento(agent, transform.GetChild(0), extraEndDistance, patrollRadius, extraPatroll);
         cambiarEstado(EstadoArmada.PATRULLANDO);
     }
 

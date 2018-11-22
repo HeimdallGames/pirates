@@ -9,7 +9,7 @@ public class Isla : MonoBehaviour
     public int posibleFelicidad(Comerciante comerciante_)
     {
         float distancia = comerciante_.getMovimiento().distance(actualPos);
-        MonoBehaviour.print("madera: " + comerciante_.getMadera() + " oro: " + comerciante_.getOro() + " tabaco: " + comerciante_.getTabaco() + " comida: " + comerciante_.getComida() + " distancia: " + distancia);
+        //MonoBehaviour.print("madera: " + comerciante_.getMadera() + " oro: " + comerciante_.getOro() + " tabaco: " + comerciante_.getTabaco() + " comida: " + comerciante_.getComida() + " distancia: " + distancia);
         return Mathf.CeilToInt(distancia);
     }
 
