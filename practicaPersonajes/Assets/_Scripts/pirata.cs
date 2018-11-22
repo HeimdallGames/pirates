@@ -6,6 +6,9 @@ using UnityEngine.AI;
 public class Pirata : MonoBehaviour
 {
     [HideInInspector] private Movimiento movimiento;
+    [SerializeField] private float extraEndDistance = 7.2f;
+    [SerializeField] private float extraPatroll = 7.2f;
+    [SerializeField] private float patrollRadius = 22.2f;
 
     public enum EstadoPirata { ESPERAR_BARCO, ATACAR, HUIR, CONSEGUIR_BOTIN };
     [SerializeField] private EstadoPirata estadoActual;
@@ -16,7 +19,8 @@ public class Pirata : MonoBehaviour
     void Start()
     {
         NavMeshAgent agent = transform.GetChild(1).GetComponent<NavMeshAgent>();
-        movimiento = new Movimiento(agent, transform.GetChild(0));
+        movimiento = new Movimiento(agent, transform.GetChild(0),extraEndDistance,patrollRadius,extraPatroll);
+        cambiarEstado(EstadoPirata.ESPERAR_BARCO);
     }
 
     void Update()
@@ -58,7 +62,7 @@ public class Pirata : MonoBehaviour
     }
     private void updateEsperandoBarco()
     {
-        //todo
+        movimiento.patrullar();
     }
     private void updateConsiguiendoBotin()
     {

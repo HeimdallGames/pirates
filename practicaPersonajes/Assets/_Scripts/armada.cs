@@ -5,7 +5,10 @@ using UnityEngine.AI;
 
 public class Armada : MonoBehaviour
 {
-    public Movimiento movimiento;
+    [HideInInspector] public Movimiento movimiento;
+    [SerializeField] private float extraEndDistance = 7.2f;
+    [SerializeField] private float extraPatroll = 7.2f;
+    [SerializeField] private float patrollRadius = 22.2f;
 
     //FSM
     private delegate void StateUpdate();
@@ -15,7 +18,8 @@ public class Armada : MonoBehaviour
     void Start()
     {
         NavMeshAgent agent = transform.GetChild(1).GetComponent<NavMeshAgent>();
-        movimiento = new Movimiento(agent, transform.GetChild(0));
+        movimiento = new Movimiento(agent, transform.GetChild(0),extraEndDistance,patrollRadius,extraPatroll);
+        cambiarEstado(EstadoArmada.PATRULLANDO);
     }
 
     void Update()
@@ -49,7 +53,7 @@ public class Armada : MonoBehaviour
 
     private void updatePatrullando()
     {
-        //todo
+        movimiento.patrullar();
     }
     private void updateAyudando()
     {
