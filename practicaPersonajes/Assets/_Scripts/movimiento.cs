@@ -6,9 +6,11 @@ public class Movimiento
 {
     private NavMeshAgent navMesh;
     private const float extraEndDistance = 7.2f;
-    public Movimiento(NavMeshAgent newNavMesh)
+    private Transform objectTransform;
+    public Movimiento(NavMeshAgent newNavMesh,Transform newTransform)
     {
         navMesh = newNavMesh;
+        objectTransform = newTransform;
     }
 
     public void stopMovement()
@@ -22,7 +24,7 @@ public class Movimiento
     public Vector2 getPos(){
         return navMesh.transform.position;
     }
-    public bool updateMovement(float deltaTime, Vector2 destination)
+    public bool updateMovement(Vector2 destination)
     {
         Vector2 distance = destination - getPos();
         if (distance.magnitude < extraEndDistance)
@@ -34,8 +36,20 @@ public class Movimiento
         {
             navMesh.destination = destination;
             navMesh.isStopped = false;
+            objectTransform.position = new Vector3( navMesh.transform.position.x,navMesh.transform.position.y,0);
+            objectTransform.rotation = Quaternion.Euler(0,0,navMesh.transform.rotation.x*Mathf.Rad2Deg);
             return false;
         }
+    }
+
+    public bool huir(Vector2 destination)
+    {
+        Vector2 distance = 2*getPos()-destination;
+        navMesh.destination = destination;
+        navMesh.isStopped = false;
+        objectTransform.position = new Vector3( navMesh.transform.position.x,navMesh.transform.position.y,0);
+        objectTransform.rotation = Quaternion.Euler(0,0,navMesh.transform.rotation.x*Mathf.Rad2Deg);
+        return false;
     }
 
     public static float getAngle(Vector2 v1)

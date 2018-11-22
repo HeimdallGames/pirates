@@ -11,13 +11,16 @@ public class Isla : MonoBehaviour
         return Mathf.CeilToInt(distancia);
     }
 
+    public void avisarBarcoEsperando(Comerciante comerciante){
+
+    }
+
+    public void comerciarConBarco(Comerciante comerciante){
+        
+    }
+
     void Start()
     {
         actualPos = new Vector2(transform.position.x,transform.position.y);
-    }
-
-    void Update()
-    {
-
     }
 }
