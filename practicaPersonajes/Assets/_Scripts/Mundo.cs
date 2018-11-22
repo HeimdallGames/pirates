@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Mundo : MonoBehaviour
 {
-    public List<Isla> islas;
+    [SerializeField] public List<Isla> islas;
     public Isla obtenerNuevoDestino(Comerciante comerciante_, Isla ultimaLista){
         islas.Sort((x,y)=>(x.posibleFelicidad(comerciante_)).CompareTo(y.posibleFelicidad(comerciante_)));
         int randomIsland = Random.Range(0,2);

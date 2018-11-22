@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4594057746348046}
   - component: {fileID: 195470284195601740}
   m_Layer: 0
-  m_Name: agenteComerciante
+  m_Name: agentePirata
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,10 +37,9 @@ GameObject:
   - component: {fileID: 4250787323669734}
   - component: {fileID: 212012622157434480}
   - component: {fileID: 61202478648417550}
-  - component: {fileID: 58775885412416992}
   - component: {fileID: 58748136757935362}
   m_Layer: 0
-  m_Name: spriteComerciante
+  m_Name: spritePirata
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,21 +117,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 20
---- !u!58 &58775885412416992
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1495023035668544}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 12
 --- !u!61 &61202478648417550
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -225,7 +209,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8ead738ba0b0fd64d85a5b2c80989e06, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5789b84851ca1494db5892d57622ed5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

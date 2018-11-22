@@ -6,23 +6,24 @@ using UnityEngine.AI;
 
 public class Comerciante : MonoBehaviour
 {
-    public Movimiento movimiento;
+    [HideInInspector] private Movimiento movimiento;
+    [SerializeField] public Mundo mundo;
 
     //FSM
     private delegate void StateUpdate();
     private StateUpdate stateUpdate;
-
-    private Isla islaDestino;
-    public Mundo mundo;
-    private Pirata huyendoPirata;
-    public int oro = 0;
-    public int tabaco = 0;
-    public int madera = 0;
-    public int comida = 0;
-
-    //public enum EstadoComerciante { MOVIENDOSE, EN_DESTINO };
     public enum EstadoComerciante { ESPERAR_COMERCIO, COMERCIANDO, BUSCANDO_ISLA, VIAJANDO_OTRA_LISTA, HUIR, ATRACADO };
-    private EstadoComerciante estadoActual;
+    [SerializeField] private EstadoComerciante estadoActual;
+
+    [SerializeField] private Isla islaDestino;
+    [SerializeField] private Pirata huyendoPirata;
+
+    //Recursos
+    [SerializeField] public int oro = 0;
+    [SerializeField] public int tabaco = 0;
+    [SerializeField] public int madera = 0;
+    [SerializeField] public int comida = 0;
+
     void Start()
     {
         cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
@@ -62,30 +63,33 @@ public class Comerciante : MonoBehaviour
         estadoActual = nuevoEstado;
     }
 
-    public void updateEsperando(){
+    public Movimiento getMovimiento(){
+        return movimiento;
     }
 
-    public void updateComerciando(){
+    private void updateEsperando(){
+    }
+
+    private void updateComerciando(){
         islaDestino.comerciarConBarco(this);
         cambiarEstado(EstadoComerciante.ESPERAR_COMERCIO);
     }
-    public void updateBuscando(){
+    private void updateBuscando(){
         islaDestino = mundo.obtenerNuevoDestino(this,islaDestino);
         cambiarEstado(EstadoComerciante.VIAJANDO_OTRA_LISTA);
     }
-    public void updateViajando(){
-        if( movimiento.updateMovement(islaDestino.actualPos)){
+    private void updateViajando(){
+        if( movimiento.updateMovement(islaDestino.getActualPos())){
             islaDestino.avisarBarcoEsperando(this);
             cambiarEstado(EstadoComerciante.ESPERAR_COMERCIO);
         }
     }
 
-    public void updateHuir(){
-        movimiento.huir(huyendoPirata.movimiento.getPos());
+    private void updateHuir(){
+        movimiento.huir(huyendoPirata.getMovimiento().getPos());
     }
-    public void updateAtracado(){
+    private void updateAtracado(){
     }
-
 
 
     //USAR PARA COMUNICARSE
