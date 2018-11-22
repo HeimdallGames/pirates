@@ -15,12 +15,12 @@ public class Armada : MonoBehaviour
     void Start()
     {
         NavMeshAgent agent = transform.GetChild(1).GetComponent<NavMeshAgent>();
-        movimiento = new Movimiento( agent, transform.GetChild(0) );
+        movimiento = new Movimiento(agent, transform.GetChild(0));
     }
 
     void Update()
     {
-       stateUpdate(); 
+        stateUpdate();
     }
 
     public void cambiarEstado(EstadoArmada nuevoEstado)
@@ -42,20 +42,25 @@ public class Armada : MonoBehaviour
         }
         estadoActual = nuevoEstado;
     }
-    public Movimiento getMovimiento(){
+    public Movimiento getMovimiento()
+    {
         return movimiento;
     }
-    
-    private void updatePatrullando(){
+
+    private void updatePatrullando()
+    {
         //todo
     }
-    private void updateAyudando(){
+    private void updateAyudando()
+    {
         //todo
     }
-    private void updatePersiguiendo(){
+    private void updatePersiguiendo()
+    {
         //todo
     }
-    private void updateAcompanando(){
+    private void updateAcompanando()
+    {
         //todo
     }
 

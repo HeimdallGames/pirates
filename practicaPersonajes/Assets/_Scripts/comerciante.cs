@@ -19,17 +19,21 @@ public class Comerciante : MonoBehaviour
     [SerializeField] private Pirata huyendoPirata;
 
     //Recursos
-    [SerializeField] public int oro = 0;
-    [SerializeField] public int tabaco = 0;
-    [SerializeField] public int madera = 0;
-    [SerializeField] public int comida = 0;
+    [SerializeField] private int oro = 0;
+
+    [SerializeField] private int madera = 0;
+    [SerializeField] private int tabaco = 0;
+    [SerializeField] private int comida = 0;
+    [HideInInspector] CanvasRecursos canvasRecursos;
 
     void Start()
     {
         cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
         islaDestino = mundo.islas[0];
         NavMeshAgent agent = transform.GetChild(1).GetComponent<NavMeshAgent>();
-        movimiento = new Movimiento( agent, transform.GetChild(0) );
+        movimiento = new Movimiento(agent, transform.GetChild(0));
+        Canvas canvas = transform.GetChild(0).GetChild(0).GetComponent<Canvas>();
+        canvasRecursos = new CanvasRecursos(canvas, oro, madera, tabaco, comida);
     }
 
     void Update()
@@ -63,44 +67,90 @@ public class Comerciante : MonoBehaviour
         estadoActual = nuevoEstado;
     }
 
-    public Movimiento getMovimiento(){
+    public Movimiento getMovimiento()
+    {
         return movimiento;
     }
-
-    private void updateEsperando(){
+    public int getComida()
+    {
+        return comida;
+    }
+    public int getOro()
+    {
+        return oro;
+    }
+    public int getMadera()
+    {
+        return madera;
+    }
+    public int getTabaco()
+    {
+        return tabaco;
+    }
+    public void setComida(int newValue)
+    {
+        comida = newValue;
+        canvasRecursos.setComida(newValue);
+    }
+    public void setOro(int newValue)
+    {
+        oro = newValue;
+        canvasRecursos.setOro(newValue);
+    }
+    public void setMadera(int newValue)
+    {
+        madera = newValue;
+        canvasRecursos.setMadera(newValue);
+    }
+    public void setTabaco(int newValue)
+    {
+        tabaco = newValue;
+        canvasRecursos.setTabaco(newValue);
     }
 
-    private void updateComerciando(){
+    private void updateEsperando()
+    {
+    }
+
+    private void updateComerciando()
+    {
         islaDestino.comerciarConBarco(this);
         cambiarEstado(EstadoComerciante.ESPERAR_COMERCIO);
     }
-    private void updateBuscando(){
-        islaDestino = mundo.obtenerNuevoDestino(this,islaDestino);
+    private void updateBuscando()
+    {
+        islaDestino = mundo.obtenerNuevoDestino(this, islaDestino);
         cambiarEstado(EstadoComerciante.VIAJANDO_OTRA_LISTA);
     }
-    private void updateViajando(){
-        if( movimiento.updateMovement(islaDestino.getActualPos())){
+    private void updateViajando()
+    {
+        if (movimiento.updateMovement(islaDestino.getActualPos()))
+        {
             islaDestino.avisarBarcoEsperando(this);
             cambiarEstado(EstadoComerciante.ESPERAR_COMERCIO);
         }
     }
 
-    private void updateHuir(){
+    private void updateHuir()
+    {
         movimiento.huir(huyendoPirata.getMovimiento().getPos());
     }
-    private void updateAtracado(){
+    private void updateAtracado()
+    {
     }
 
 
     //USAR PARA COMUNICARSE
-    public void atracar(){
-        oro=0;
-        tabaco = Mathf.CeilToInt(0.25f*tabaco);
-        madera = Mathf.CeilToInt(0.25f*madera);
-        comida = Mathf.CeilToInt(0.25f*comida);
+    public void atracar()
+    {
+        oro = 0;
+        tabaco = Mathf.CeilToInt(0.25f * tabaco);
+        madera = Mathf.CeilToInt(0.25f * madera);
+        comida = Mathf.CeilToInt(0.25f * comida);
         cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
     }
-    public void avisarEsPerseguido(Pirata pirata){
+    public void avisarEsPerseguido(Pirata pirata)
+    {
         huyendoPirata = pirata;
         cambiarEstado(EstadoComerciante.HUIR);
     }

@@ -6,25 +6,29 @@ public class Isla : MonoBehaviour
 {
     [HideInInspector] private Vector2 actualPos;
 
-    public int posibleFelicidad(Comerciante comerciante_){
+    public int posibleFelicidad(Comerciante comerciante_)
+    {
         float distancia = comerciante_.getMovimiento().distance(actualPos);
-        MonoBehaviour.print("madera: "+comerciante_.madera+" oro: "+comerciante_.oro+" tabaco: "+comerciante_.tabaco+" comida: "+comerciante_.comida+" distancia: "+distancia);
+        MonoBehaviour.print("madera: " + comerciante_.getMadera() + " oro: " + comerciante_.getOro() + " tabaco: " + comerciante_.getTabaco() + " comida: " + comerciante_.getComida() + " distancia: " + distancia);
         return Mathf.CeilToInt(distancia);
     }
 
-    public void avisarBarcoEsperando(Comerciante comerciante){
+    public void avisarBarcoEsperando(Comerciante comerciante)
+    {
 
     }
 
-    public void comerciarConBarco(Comerciante comerciante){
-        
+    public void comerciarConBarco(Comerciante comerciante)
+    {
+
     }
 
     void Start()
     {
-        actualPos = new Vector2(transform.position.x,transform.position.y);
+        actualPos = new Vector2(transform.position.x, transform.position.y);
     }
-    public Vector2 getActualPos(){
+    public Vector2 getActualPos()
+    {
         return actualPos;
     }
 }

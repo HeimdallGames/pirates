@@ -16,7 +16,7 @@ public class Pirata : MonoBehaviour
     void Start()
     {
         NavMeshAgent agent = transform.GetChild(1).GetComponent<NavMeshAgent>();
-        movimiento = new Movimiento( agent, transform.GetChild(0) );
+        movimiento = new Movimiento(agent, transform.GetChild(0));
     }
 
     void Update()
@@ -43,20 +43,25 @@ public class Pirata : MonoBehaviour
         }
         estadoActual = nuevoEstado;
     }
-    public Movimiento getMovimiento(){
+    public Movimiento getMovimiento()
+    {
         return movimiento;
     }
-    
-    private void updateAtacando(){
+
+    private void updateAtacando()
+    {
         //todo
     }
-    private void updateHuyendo(){
+    private void updateHuyendo()
+    {
         //todo
     }
-    private void updateEsperandoBarco(){
+    private void updateEsperandoBarco()
+    {
         //todo
     }
-    private void updateConsiguiendoBotin(){
+    private void updateConsiguiendoBotin()
+    {
         //todo
     }
 }
