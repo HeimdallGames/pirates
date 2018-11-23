@@ -7,6 +7,9 @@ public class Isla : MonoBehaviour
 {
     [HideInInspector] private Vector2 actualPos;
 	public Mundo mundo;
+	public Sprite islaCom;
+	public Sprite islaRec;
+	public bool islaComercio;
 
 	public int tipoIslaActual = -1;
 
@@ -69,9 +72,23 @@ public class Isla : MonoBehaviour
 		}
     }
 
-
+	void Update()
+	{
+		if (islaComercio) {
+			this.gameObject.GetComponent<SpriteRenderer> ().sprite = islaCom;
+			Debug.Log ("Cambiado");
+		} else {
+			this.gameObject.GetComponent<SpriteRenderer> ().sprite = islaRec;
+		}
+	}
     void Start()
     {	
+		if (islaComercio) {
+			this.gameObject.GetComponent<SpriteRenderer> ().sprite = islaCom;
+		} else {
+			this.gameObject.GetComponent<SpriteRenderer> ().sprite = islaRec;
+		}
+			
         actualPos = new Vector2(transform.position.x, transform.position.y);
 		precioMadera = valorEstandar;
 		precioComida = valorEstandar;
@@ -83,7 +100,7 @@ public class Isla : MonoBehaviour
 	/*
 	public void asignarMaterial()
 	{
-		tipoIslaActual = Random.Range (0, 2);;
+		tipoIslaActual = Random.Range (0, 3);;
 
 		switch (tipoIslaActual) 
 		{
