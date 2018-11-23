@@ -5,6 +5,8 @@ using UnityEngine;
 public class Mundo : MonoBehaviour
 {
     [SerializeField] public List<Isla> islas;
+
+
     public Isla obtenerNuevoDestino(Comerciante comerciante_, Isla ultimaLista)
     {
         islas.Sort((x, y) => (x.posibleFelicidad(comerciante_)).CompareTo(y.posibleFelicidad(comerciante_)));

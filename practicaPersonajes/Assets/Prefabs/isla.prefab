@@ -38,7 +38,7 @@ Transform:
   m_GameObject: {fileID: 1041580731294036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -59,7 +59,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.86, y: 5.26}
+    oldSize: {x: 6.12, y: 6.12}
     newSize: {x: 7.86, y: 5.26}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -79,7 +79,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31916da82216e6c47a95764645bb8992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actualPos: {x: 0, y: 0}
+  mundo: {fileID: 114850114234210864, guid: 340bd1d5394e9eb419fa72af56a8850d, type: 2}
+  tipoIslaActual: 0
+  oro: 1000
+  madera: 0
+  tabaco: 0
+  comida: 0
+  precioMadera: 0
+  precioComida: 0
+  precioTabaco: 0
 --- !u!208 &208971904943144000
 NavMeshObstacle:
   m_ObjectHideFlags: 1
@@ -130,7 +138,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8d8713fa4daf14d4c87e3cd1ba6b4533, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 858f2927312b4d44c86b4c77ab667f3d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
