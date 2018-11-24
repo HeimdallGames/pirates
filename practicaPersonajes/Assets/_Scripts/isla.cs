@@ -7,11 +7,15 @@ public class Isla : MonoBehaviour
 {
     [HideInInspector] private Vector2 actualPos;
 	public Mundo mundo;
+
+	public enum tipos {MADERA,TABACO,COMIDA,COMERCIO};
+	public tipos tipoActual;
+
 	public Sprite islaCom;
 	public Sprite islaRec;
 	public bool islaComercio;
 
-	public int tipoIslaActual = -1;
+	private int tipoIslaActual = -1;
 
 	//Recursos
 	public int oro = 1000;
@@ -76,28 +80,38 @@ public class Isla : MonoBehaviour
 	{
 		if (islaComercio) {
 			this.gameObject.GetComponent<SpriteRenderer> ().sprite = islaCom;
-			Debug.Log ("Cambiado");
+			reasignarIsla ();
 		} else {
 			this.gameObject.GetComponent<SpriteRenderer> ().sprite = islaRec;
+
+			if (this.tipoActual == tipos.COMERCIO) 
+			{
+				asignarMaterial ();
+			}
+
 		}
 	}
+
     void Start()
     {	
 		if (islaComercio) {
 			this.gameObject.GetComponent<SpriteRenderer> ().sprite = islaCom;
+			reasignarIsla ();
 		} else {
 			this.gameObject.GetComponent<SpriteRenderer> ().sprite = islaRec;
+			asignarMaterial ();
 		}
 			
         actualPos = new Vector2(transform.position.x, transform.position.y);
 		precioMadera = valorEstandar;
 		precioComida = valorEstandar;
 		precioTabaco = valorEstandar;
-		//asignarMaterial ();
+
+		asignarMaterial ();
     }
 
 
-	/*
+
 	public void asignarMaterial()
 	{
 		tipoIslaActual = Random.Range (0, 3);;
@@ -106,20 +120,36 @@ public class Isla : MonoBehaviour
 		{
 		case 0:
 			comida = 1000;
+			tabaco = 0;
+			madera = 0;
+			tipoActual = tipos.COMIDA;
 			break;
 		case 1:
+			comida = 0;
 			tabaco = 1000;
+			madera = 0;
+			tipoActual = tipos.TABACO;
 			break;
 		case 2:
+			comida = 0;
+			tabaco = 0;
 			madera = 1000;
+			tipoActual = tipos.MADERA;
 			break;
 		}
 	}
-*/
+
     public Vector2 getActualPos()
     {
         return actualPos;
     }
 
-
+	private void reasignarIsla()
+	{
+		oro = 1000;
+		madera = 400;
+		tabaco = 400;
+		comida = 400;
+		tipoActual = tipos.COMERCIO;
+	}
 }

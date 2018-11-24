@@ -80,10 +80,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mundo: {fileID: 114850114234210864, guid: 340bd1d5394e9eb419fa72af56a8850d, type: 2}
-  spritesIslas:
-  - {fileID: 21300000, guid: 1c04fd269f1ba354aba3903e9d52ef85, type: 3}
-  - {fileID: 21300000, guid: 858f2927312b4d44c86b4c77ab667f3d, type: 3}
-  islaComercio: 1
+  islaCom: {fileID: 21300000, guid: 1c04fd269f1ba354aba3903e9d52ef85, type: 3}
+  islaRec: {fileID: 21300000, guid: 858f2927312b4d44c86b4c77ab667f3d, type: 3}
+  islaComercio: 0
   tipoIslaActual: 0
   oro: 1000
   madera: 0
