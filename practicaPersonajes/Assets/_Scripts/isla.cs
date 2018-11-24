@@ -37,9 +37,13 @@ public class Isla : MonoBehaviour
 
     public int posibleFelicidad(Comerciante comerciante_)
     {
+		float felicidad,beneficios = 0;
         float distancia = comerciante_.getMovimiento().distance(actualPos);
         //MonoBehaviour.print("madera: " + comerciante_.getMadera() + " oro: " + comerciante_.getOro() + " tabaco: " + comerciante_.getTabaco() + " comida: " + comerciante_.getComida() + " distancia: " + distancia);
-        return Mathf.CeilToInt(distancia);
+		beneficios = comerciante_.getMadera() * precioMadera + comerciante_.getTabaco() * precioTabaco + comerciante_.getComida() * precioComida;
+		felicidad = (40*distancia + 60*beneficios)/100;
+		Debug.Log (felicidad + " felicidad y " + beneficios + " beneficios");
+		return Mathf.CeilToInt(distancia);
     }
 
     public void avisarBarcoEsperando(Comerciante comerciante)
@@ -98,6 +102,8 @@ public class Isla : MonoBehaviour
 
     void Start()
     {	
+		this.gameObject.GetComponent<SpriteRenderer> ().sprite = null;
+
 		if (islaComercio) {
 			this.gameObject.GetComponent<SpriteRenderer> ().sprite = islaCom;
 			reasignarIsla ();
