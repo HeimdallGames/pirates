@@ -79,15 +79,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31916da82216e6c47a95764645bb8992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mundo: {fileID: 114850114234210864, guid: 340bd1d5394e9eb419fa72af56a8850d, type: 2}
+  mundo: {fileID: 0}
   tipoActual: 0
   islaCom: {fileID: 21300000, guid: 1c04fd269f1ba354aba3903e9d52ef85, type: 3}
   islaRec: {fileID: 21300000, guid: 858f2927312b4d44c86b4c77ab667f3d, type: 3}
   islaComercio: 0
   oro: 1000
-  madera: 0
-  tabaco: 0
-  comida: 0
+  madera: 400
+  tabaco: 400
+  comida: 400
   precioMadera: 0
   precioComida: 0
   precioTabaco: 0
