@@ -18,6 +18,7 @@ public class Comerciante : MonoBehaviour
 
     [SerializeField] private Isla islaDestino;
     [SerializeField] private Pirata huyendoPirata;
+	private bool esperando;
 
     //Recursos
     [SerializeField] private int oro = 0;
@@ -35,6 +36,7 @@ public class Comerciante : MonoBehaviour
         movimiento = new Movimiento(agent, transform.GetChild(0), extraEndDistance);
         Canvas canvas = transform.GetChild(0).GetChild(0).GetComponent<Canvas>();
         canvasRecursos = new CanvasRecursos(canvas, oro, madera, tabaco, comida);
+		esperando = true;
     }
 
     void Update()
@@ -108,9 +110,16 @@ public class Comerciante : MonoBehaviour
         tabaco = newValue;
         canvasRecursos.setTabaco(newValue);
     }
-
+	public void setEspera(bool estado)
+	{
+		this.esperando = estado;
+	}
     private void updateEsperando()
     {
+		if (esperando == false) 
+		{
+			cambiarEstado(EstadoComerciante.COMERCIANDO);
+		}
     }
 
     private void updateComerciando()

@@ -44,7 +44,8 @@ public class Isla : MonoBehaviour
 
     public void avisarBarcoEsperando(Comerciante comerciante)
     {
-
+		//wait 3 s
+		comerciante.setEspera(false);
     }
 
     public void comerciarConBarco(Comerciante comerciante)
@@ -74,6 +75,9 @@ public class Isla : MonoBehaviour
 			this.oro -= comerciante.getComida() * precioComida;
 			comerciante.setComida (0);
 		}
+
+		//volver a esperar en otra isla hasta que pueda comerciar
+		comerciante.setEspera(true);
     }
 
 	void Update()
