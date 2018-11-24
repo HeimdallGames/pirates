@@ -35,6 +35,12 @@ public class Isla : MonoBehaviour
 	private int necesidadAlta = 200;
 	private int necesidadBaja = 800;
 
+
+	IEnumerator esperar(int tiempo)
+	{
+		yield return new WaitForSeconds (tiempo);
+	}
+
     public int posibleFelicidad(Comerciante comerciante_)
     {
 		float felicidad,beneficios = 0;
@@ -42,13 +48,16 @@ public class Isla : MonoBehaviour
         //MonoBehaviour.print("madera: " + comerciante_.getMadera() + " oro: " + comerciante_.getOro() + " tabaco: " + comerciante_.getTabaco() + " comida: " + comerciante_.getComida() + " distancia: " + distancia);
 		beneficios = comerciante_.getMadera() * precioMadera + comerciante_.getTabaco() * precioTabaco + comerciante_.getComida() * precioComida;
 		felicidad = (40*distancia + 60*beneficios)/100;
-		Debug.Log (felicidad + " felicidad y " + beneficios + " beneficios");
+		//Debug.Log (felicidad + " felicidad y " + beneficios + " beneficios");
 		return Mathf.CeilToInt(distancia);
     }
 
     public void avisarBarcoEsperando(Comerciante comerciante)
     {
 		//wait 3 s
+		Debug.Log("A esperar");
+		StartCoroutine(esperar(3));
+		Debug.Log("Considerese usted esperado");
 		comerciante.setEspera(false);
     }
 
