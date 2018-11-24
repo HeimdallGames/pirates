@@ -125,7 +125,7 @@ public class Comerciante : MonoBehaviour
     private void updateComerciando()
     {
         islaDestino.comerciarConBarco(this);
-        cambiarEstado(EstadoComerciante.ESPERAR_COMERCIO);
+        cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
     }
     private void updateBuscando()
     {

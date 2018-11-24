@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -613,6 +613,11 @@ Prefab:
       propertyPath: mundo
       value: 
       objectReference: {fileID: 1617200413}
+    - target: {fileID: 114609564392810000, guid: a9140b6509c7b2141bcc994cf8e631a3,
+        type: 2}
+      propertyPath: madera
+      value: 25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
   m_IsPrefabParent: 0

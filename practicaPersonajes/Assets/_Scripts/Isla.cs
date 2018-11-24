@@ -13,32 +13,33 @@ public class Isla : MonoBehaviour
 
 	public Sprite islaCom;
 	public Sprite islaRec;
-	public bool islaComercio;
+	[SerializeField] private bool islaComercio;
 
 	private int tipoIslaActual = -1;
 
 	//Recursos
-	public int oro = 1000;
-	public int madera = 400;
-	public int tabaco = 400;
-	public int comida = 400;
+	[SerializeField] private int oro = 1000;
+	[SerializeField] private int madera = 400;
+	[SerializeField] private int tabaco = 400;
+	[SerializeField] private int comida = 400;
 
 	private int valorEstandar = 10;
 	private int valorAlto = 15;
 	private int valorBajo = 5;
 
-	public int precioMadera;
-	public int precioComida;
-	public int precioTabaco;
+	[SerializeField] private int precioMadera;
+	[SerializeField] private int precioComida;
+	[SerializeField] private int precioTabaco;
 
 	private int necesidadEstandar = 400;
 	private int necesidadAlta = 200;
 	private int necesidadBaja = 800;
 
 
-	IEnumerator esperar(int tiempo)
-	{
+	IEnumerator esperar(int tiempo, Comerciante comerciante)
+	{	
 		yield return new WaitForSeconds (tiempo);
+		comerciante.setEspera(false);
 	}
 
     public int posibleFelicidad(Comerciante comerciante_)
@@ -55,10 +56,10 @@ public class Isla : MonoBehaviour
     public void avisarBarcoEsperando(Comerciante comerciante)
     {
 		//wait 3 s
-		Debug.Log("A esperar");
-		StartCoroutine(esperar(3));
-		Debug.Log("Considerese usted esperado");
-		comerciante.setEspera(false);
+		comerciante.setEspera(true);
+		Debug.Log("Comerciente: "+comerciante.name+" A esperar");
+		StartCoroutine(esperar(3,comerciante));
+		//volver a esperar en otra isla hasta que pueda comerciar	
     }
 
     public void comerciarConBarco(Comerciante comerciante)
@@ -88,9 +89,6 @@ public class Isla : MonoBehaviour
 			this.oro -= comerciante.getComida() * precioComida;
 			comerciante.setComida (0);
 		}
-
-		//volver a esperar en otra isla hasta que pueda comerciar
-		comerciante.setEspera(true);
     }
 
 	void Update()
