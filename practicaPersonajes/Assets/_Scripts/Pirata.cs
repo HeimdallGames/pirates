@@ -13,6 +13,10 @@ public class Pirata : MonoBehaviour
     public enum EstadoPirata { ESPERAR_BARCO, ATACAR, HUIR, CONSEGUIR_BOTIN };
     [SerializeField] private EstadoPirata estadoActual;
 
+	[SerializeField] private Comerciante target;
+    [SerializeField] private List<GameObject> listaColisiones;
+    [SerializeField] private GameObject collisionObject;
+
     //FSM
     private delegate void StateUpdate();
     private StateUpdate stateUpdate;
@@ -25,6 +29,11 @@ public class Pirata : MonoBehaviour
 
     void Update()
     {
+        if (listaColisiones.Count > 0)
+        {
+            collisionObject = listaColisiones[0];
+            listaColisiones.RemoveAt(0);
+        }
         stateUpdate();
     }
 
@@ -54,18 +63,31 @@ public class Pirata : MonoBehaviour
 
     private void updateAtacando()
     {
-        //todo
+		movimiento.updateMovement (target.getMovimiento().getPos());
     }
     private void updateHuyendo()
     {
-        //todo
+        target = null;
     }
     private void updateEsperandoBarco()
     {
+        if (collisionObject.tag == "Comerciante")
+        {
+            target = collisionObject.GetComponent<Comerciante>();
+            //target.avisarEsPerseguido(this);
+            cambiarEstado(EstadoPirata.ATACAR);
+        }
         movimiento.patrullar();
     }
     private void updateConsiguiendoBotin()
     {
         //todo
     }
+    
+
+    /*COLISIONES*/
+	void OnCollisionEnter2D(Collision2D coll)
+	{
+        listaColisiones.Add(coll.transform.parent.gameObject);
+	}
 }

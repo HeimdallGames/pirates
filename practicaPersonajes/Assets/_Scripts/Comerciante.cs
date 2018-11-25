@@ -27,6 +27,7 @@ public class Comerciante : MonoBehaviour
     [SerializeField] private int tabaco = 0;
     [SerializeField] private int comida = 0;
     [HideInInspector] private CanvasRecursos canvasRecursos;
+    
 
     void Start()
     {
