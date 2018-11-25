@@ -5,26 +5,47 @@ using UnityEngine.AI;
 
 public class Armada : MonoBehaviour
 {
-    [HideInInspector] public Movimiento movimiento;
-    [SerializeField] public Mundo  mundo;
-    [SerializeField] private float extraEndDistance = 7.2f;
-    [SerializeField] private float extraPatroll = 7.2f;
-    [SerializeField] private float patrollRadius = 22.2f;
+    [HideInInspector]
+    public Movimiento movimiento;
+    [SerializeField]
+    public Mundo mundo;
+    [SerializeField]
+    private float extraEndDistance = 7.2f;
+    [SerializeField]
+    private float extraPatroll = 7.2f;
+    [SerializeField]
+    private float patrollRadius = 22.2f;
+
+    [SerializeField]
+    private Comerciante Llamada;
+    [SerializeField]
+    private Pirata Persiguiendo;
+    [SerializeField]
+    private List<GameObject> listaColisiones;
+    [SerializeField]
+    private GameObject collisionObject;
 
     //FSM
     private delegate void StateUpdate();
     private StateUpdate stateUpdate;
     public enum EstadoArmada { PATRULLANDO, AYUDA, PERSIGUE, ACOMPANA_COMERCIANTE };
-    [SerializeField] private EstadoArmada estadoActual;
+    [SerializeField]
+    private EstadoArmada estadoActual;
     void Start()
     {
         NavMeshAgent agent = transform.GetChild(1).GetComponent<NavMeshAgent>();
         movimiento = new Movimiento(agent, transform.GetChild(0), extraEndDistance, patrollRadius, extraPatroll);
         cambiarEstado(EstadoArmada.PATRULLANDO);
+        collisionObject = null;
     }
 
     void Update()
     {
+        if (listaColisiones.Count > 0)
+        {
+            collisionObject = listaColisiones[0];
+            listaColisiones.RemoveAt(0);
+        }
         stateUpdate();
     }
 
@@ -54,7 +75,18 @@ public class Armada : MonoBehaviour
 
     private void updatePatrullando()
     {
-        movimiento.patrullar();
+
+        if (collisionObject != null && collisionObject.tag == "Comerciante")
+        {
+
+            Persiguiendo = collisionObject.GetComponent<Pirata>();
+            Persiguiendo.detectadoPorArmada(this);
+            cambiarEstado(EstadoArmada.PERSIGUE);
+        }
+        else
+        {
+            movimiento.patrullar();
+        }
     }
     private void updateAyudando()
     {
@@ -67,6 +99,15 @@ public class Armada : MonoBehaviour
     private void updateAcompanando()
     {
         //todo
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (estadoActual == EstadoArmada.PATRULLANDO && coll.transform.parent != null)
+        {
+            listaColisiones.Add(coll.transform.parent.gameObject);
+        }
+        MonoBehaviour.print("collision detectada");
     }
 
 }

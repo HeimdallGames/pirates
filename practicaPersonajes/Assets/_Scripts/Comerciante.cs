@@ -28,6 +28,7 @@ public class Comerciante : MonoBehaviour
     [SerializeField] private int tabaco = 0;
     [SerializeField] private int comida = 0;
     [HideInInspector] private CanvasRecursos canvasRecursos;
+    public bool ayuda = false;
     
 
     void Start()
@@ -166,6 +167,7 @@ public class Comerciante : MonoBehaviour
     }
     public void avisarEsPerseguido(Pirata pirata)
     {
+        ayuda = true;
         huyendoPirata = pirata;
         cambiarEstado(EstadoComerciante.HUIR);
         MonoBehaviour.print("El comerciante: "+transform.name+" esta siendo perseguido.");
