@@ -94,7 +94,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1197821721392422}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 22.635456, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4280074060064194}
@@ -153,6 +153,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f1e3bc3d1529964b9d80dd6a2a4e203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mundo: {fileID: 0}
+  extraEndDistance: 7.2
+  extraPatroll: 7.2
+  patrollRadius: 22.2
+  estadoActual: 0
 --- !u!195 &195186605560172894
 NavMeshAgent:
   m_ObjectHideFlags: 1

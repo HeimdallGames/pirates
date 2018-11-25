@@ -6,6 +6,7 @@ using UnityEngine.AI;
 
 public class Comerciante : MonoBehaviour
 {
+    [SerializeField] public Transform prefab;
     [HideInInspector] private Movimiento movimiento;
     [SerializeField] private float extraEndDistance = 8.2f;
     [SerializeField] public Mundo mundo;
@@ -126,12 +127,14 @@ public class Comerciante : MonoBehaviour
     private void updateComerciando()
     {
         islaDestino.comerciarConBarco(this);
+        MonoBehaviour.print("El comerciante: "+transform.name+" ha comerciado con la isla: "+islaDestino.name+".");
         cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
     }
     private void updateBuscando()
     {
         islaDestino = mundo.obtenerNuevoDestino(this, islaDestino);
         cambiarEstado(EstadoComerciante.VIAJANDO_OTRA_LISTA);
+        MonoBehaviour.print("El comerciante: "+transform.name+" se dirige a su nuevo destino: "+islaDestino.name+".");
     }
     private void updateViajando()
     {
@@ -146,35 +149,25 @@ public class Comerciante : MonoBehaviour
     {
         movimiento.huir(huyendoPirata.getMovimiento().getPos());
     }
+
     private void updateAtracado()
     {
-        setOro(Mathf.CeilToInt(0.01f*oro));
-        setMadera(Mathf.CeilToInt(0.01f*madera));
-        setComida(Mathf.CeilToInt(0.01f*comida));
-        setTabaco(Mathf.CeilToInt(0.01f*tabaco));
-        esperarReaunudarViaje(4);
-        
-    }
-
-    IEnumerator esperarReaunudarViaje(int tiempo)
-    {
-        yield return new WaitForSeconds(tiempo);
-        cambiarEstado(EstadoComerciante.VIAJANDO_OTRA_LISTA);
+        MonoBehaviour.print("comerciante destruido");
+        mundo.addRespawn(prefab,transform.position,transform.rotation, 2);
+        Destroy(gameObject);
     }
 
 
     //USAR PARA COMUNICARSE
     public void atracar()
     {
-        oro = 0;
-        tabaco = Mathf.CeilToInt(0.25f * tabaco);
-        madera = Mathf.CeilToInt(0.25f * madera);
-        comida = Mathf.CeilToInt(0.25f * comida);
-        cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
+        cambiarEstado(EstadoComerciante.ATRACADO);
+        MonoBehaviour.print("El comerciante: "+transform.name+" ha sido atacado.");
     }
     public void avisarEsPerseguido(Pirata pirata)
     {
         huyendoPirata = pirata;
         cambiarEstado(EstadoComerciante.HUIR);
+        MonoBehaviour.print("El comerciante: "+transform.name+" esta siendo perseguido.");
     }
 }

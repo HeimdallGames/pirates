@@ -80,13 +80,14 @@ public class Movimiento
         }
     }
 
-    public void huir(Vector2 destination)
+    public float huir(Vector2 destination)
     {
         Vector2 distance = 2 * getPos() - destination;
         navMesh.destination = destination;
         navMesh.isStopped = false;
         objectTransform.position = new Vector3(navMesh.transform.position.x, navMesh.transform.position.y, 0);
         objectTransform.rotation = Quaternion.Euler(0, 0, getRotation());
+        return distance.magnitude;
     }
 
     public static float getAngle(Vector2 v1)
@@ -119,6 +120,10 @@ public class Movimiento
             }
 
         }
+    }
+
+    public Vector2 getInitialPos(){
+        return initialPos;
     }
     public float getRotation()
     {

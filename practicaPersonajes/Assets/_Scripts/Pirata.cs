@@ -6,14 +6,21 @@ using UnityEngine.AI;
 public class Pirata : MonoBehaviour
 {
     [HideInInspector] private Movimiento movimiento;
-    [SerializeField] private float extraEndDistance = 7.2f;
-    [SerializeField] private float extraPatroll = 7.2f;
-    [SerializeField] private float patrollRadius = 22.2f;
+    [SerializeField] public Mundo mundo;
+    [SerializeField] public Transform prefab;
 
-    public enum EstadoPirata { ESPERAR_BARCO, ATACAR, HUIR, CONSEGUIR_BOTIN };
+
+    [SerializeField] private float EndDistance = 15f;
+    [SerializeField] private float huyendoDistance = 15f;
+    
+    [SerializeField] private float Patroll = 5f;
+    [SerializeField] private float patrollRadius = 22f;
+
+    public enum EstadoPirata { ESPERAR_BARCO, ATACAR, HUIR, CONSEGUIR_BOTIN, REFRESANDO, DESTRUIDO };
     [SerializeField] private EstadoPirata estadoActual;
 
 	[SerializeField] private Comerciante target;
+    [SerializeField] private Armada huyendoDe;
     [SerializeField] private List<GameObject> listaColisiones;
     [SerializeField] private GameObject collisionObject;
 
@@ -23,8 +30,9 @@ public class Pirata : MonoBehaviour
     void Start()
     {
         NavMeshAgent agent = transform.GetChild(1).GetComponent<NavMeshAgent>();
-        movimiento = new Movimiento(agent, transform.GetChild(0), extraEndDistance, patrollRadius, extraPatroll);
+        movimiento = new Movimiento(agent, transform.GetChild(0), EndDistance, patrollRadius, Patroll);
         cambiarEstado(EstadoPirata.ESPERAR_BARCO);
+        collisionObject = null;
     }
 
     void Update()
@@ -53,6 +61,12 @@ public class Pirata : MonoBehaviour
             case EstadoPirata.HUIR:
                 stateUpdate = updateHuyendo;
                 break;
+            case EstadoPirata.REFRESANDO:
+                stateUpdate = updateRegresando;
+                break;
+            case EstadoPirata.DESTRUIDO:
+                stateUpdate = updateDestruido;
+                break;
         }
         estadoActual = nuevoEstado;
     }
@@ -61,33 +75,66 @@ public class Pirata : MonoBehaviour
         return movimiento;
     }
 
+    private void updateRegresando()
+    {
+        if(movimiento.updateMovement(movimiento.getInitialPos())){
+            cambiarEstado(EstadoPirata.ESPERAR_BARCO);
+        }
+    }
+     private void updateDestruido()
+    {
+        mundo.addRespawn(prefab,transform.position,transform.rotation, 4);
+        Destroy(gameObject);
+    }
     private void updateAtacando()
     {
-		movimiento.updateMovement (target.getMovimiento().getPos());
+        if(movimiento.updateMovement (target.getMovimiento().getPos()))
+        {
+            cambiarEstado(EstadoPirata.CONSEGUIR_BOTIN);
+        }
     }
     private void updateHuyendo()
     {
-        target = null;
+        if(movimiento.huir(huyendoDe.getMovimiento().getPos())<huyendoDistance){
+            cambiarEstado(EstadoPirata.REFRESANDO);
+        }
+
     }
     private void updateEsperandoBarco()
     {
-        if (collisionObject.tag == "Comerciante")
+        if ( collisionObject != null &&collisionObject.tag == "Comerciante")
         {
             target = collisionObject.GetComponent<Comerciante>();
-            //target.avisarEsPerseguido(this);
+            target.avisarEsPerseguido(this);
             cambiarEstado(EstadoPirata.ATACAR);
         }
-        movimiento.patrullar();
+        else{
+            movimiento.patrullar();
+        }
     }
     private void updateConsiguiendoBotin()
     {
-        //todo
+        MonoBehaviour.print("El pirata: "+transform.name+"esta consiguiendo su botin.");
+        cambiarEstado(EstadoPirata.REFRESANDO);
+        target.atracar();
+        
     }
     
 
     /*COLISIONES*/
 	void OnCollisionEnter2D(Collision2D coll)
 	{
+        if( estadoActual ==  EstadoPirata.ESPERAR_BARCO && coll.transform.parent != null)
+        {
         listaColisiones.Add(coll.transform.parent.gameObject);
+        }
+        //MonoBehaviour.print("collision detectada");
 	}
+
+    //COMUNICACION
+    public void detectadoPorArmada(Armada armada){
+        huyendoDe = armada;
+        cambiarEstado(EstadoPirata.HUIR);
+        MonoBehaviour.print("El pirata: "+transform.name+" ha sido detectado por la armada.");
+    }
 }

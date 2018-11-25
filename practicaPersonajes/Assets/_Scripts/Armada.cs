@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class Armada : MonoBehaviour
 {
     [HideInInspector] public Movimiento movimiento;
+    [SerializeField] public Mundo  mundo;
     [SerializeField] private float extraEndDistance = 7.2f;
     [SerializeField] private float extraPatroll = 7.2f;
     [SerializeField] private float patrollRadius = 22.2f;

@@ -54,9 +54,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4545488382102858}
   - component: {fileID: 114876739117254386}
+  - component: {fileID: 50529574227274574}
   m_Layer: 0
   m_Name: pirata
-  m_TagString: Untagged
+  m_TagString: Pirata
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +82,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1874513242051252}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -59.4, y: 22.635456, z: -0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4250787323669734}
@@ -102,6 +103,26 @@ Transform:
   m_Father: {fileID: 4545488382102858}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &50529574227274574
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1874513242051252}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!58 &58748136757935362
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -153,10 +174,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87f974bb96b966948bee1a29a088335f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  extraEndDistance: 7.2
-  extraPatroll: 7.2
-  patrollRadius: 22.2
+  mundo: {fileID: 0}
+  prefab: {fileID: 0}
+  EndDistance: 15
+  huyendoDistance: 15
+  Patroll: 5
+  patrollRadius: 22
   estadoActual: 0
+  target: {fileID: 0}
+  huyendoDe: {fileID: 0}
+  listaColisiones: []
+  collisionObject: {fileID: 0}
 --- !u!195 &195470284195601740
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -166,10 +194,10 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 7
-  m_Speed: 8.5
+  m_Speed: 14.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 0
   m_StoppingDistance: 5.2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
