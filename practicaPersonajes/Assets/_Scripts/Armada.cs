@@ -29,7 +29,7 @@ public class Armada : MonoBehaviour
     //FSM
     private delegate void StateUpdate();
     private StateUpdate stateUpdate;
-    public enum EstadoArmada { PATRULLANDO, AYUDA, PERSIGUE, ACOMPANA_COMERCIANTE };
+    public enum EstadoArmada { PATRULLANDO, AYUDA, PERSIGUE,ATRAPAR, ACOMPANA_COMERCIANTE };
     [SerializeField]
     private EstadoArmada estadoActual;
     void Start()
@@ -62,6 +62,9 @@ public class Armada : MonoBehaviour
                 break;
             case EstadoArmada.PERSIGUE:
                 stateUpdate = updatePersiguiendo;
+                break;
+            case EstadoArmada.ATRAPAR:
+                stateUpdate = updateAtraparPirata;
                 break;
             case EstadoArmada.ACOMPANA_COMERCIANTE:
                 stateUpdate = updateAcompanando;
@@ -101,12 +104,20 @@ public class Armada : MonoBehaviour
         {
             collisionObject = null;
 
-            cambiarEstado(EstadoArmada.PATRULLANDO);
+            cambiarEstado(EstadoArmada.ATRAPAR);
         }
     }
     private void updateAcompanando()
     {
-        //todo
+        
+    }
+
+    private void updateAtraparPirata()
+    {
+        MonoBehaviour.print("La armada: " + transform.name + " ha capturado al pirata.");
+        cambiarEstado(EstadoArmada.PATRULLANDO);
+        Persiguiendo.barcoDestruido();
+
     }
 
     void OnCollisionEnter2D(Collision2D coll)
@@ -116,6 +127,12 @@ public class Armada : MonoBehaviour
             listaColisiones.Add(coll.transform.gameObject);
         }
         MonoBehaviour.print("collision detectada ARMADA");
+    }
+
+
+    public void cancelarPersecucion()
+    {
+        cambiarEstado(EstadoArmada.ACOMPANA_COMERCIANTE);
     }
 
 }
