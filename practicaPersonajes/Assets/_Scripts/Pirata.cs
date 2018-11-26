@@ -43,6 +43,7 @@ public class Pirata : MonoBehaviour
         {
             collisionObject = listaColisiones[0];
             listaColisiones.RemoveAt(0);
+            MonoBehaviour.print("sacado collision object");
         }
         stateUpdate();
     }
@@ -98,8 +99,9 @@ public class Pirata : MonoBehaviour
     }
     private void updateEsperandoBarco()
     {
-        if ( collisionObject != null &&collisionObject.tag == "Comerciante")
+        if ( collisionObject != null && collisionObject.tag == "Comerciante")
         {
+            MonoBehaviour.print("analizado collison object");
             target = collisionObject.GetComponent<Comerciante>();
             target.avisarEsPerseguido(this);
             cambiarEstado(EstadoPirata.ATACAR);
@@ -118,13 +120,14 @@ public class Pirata : MonoBehaviour
     
 
     /*COLISIONES*/
-	void OnCollisionEnter2D(Collision2D coll)
+	void OnTriggerEnter2D(Collider2D coll)
 	{
-        if( coll.transform.parent != null)
+        if( coll.transform != null)
         {
-        listaColisiones.Add(coll.transform.parent.gameObject);
+            MonoBehaviour.print("collision detectada por PIRATA no nula");
+            listaColisiones.Add(coll.transform.gameObject);
         }
-        //MonoBehaviour.print("collision detectada");
+        MonoBehaviour.print("collision detectada por PIRATA");
 	}
 
     //COMUNICACION

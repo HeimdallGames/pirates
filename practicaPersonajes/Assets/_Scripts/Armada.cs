@@ -100,7 +100,6 @@ public class Armada : MonoBehaviour
         if (movimiento.updateMovement(Persiguiendo.getMovimiento().getPos()))
         {
             collisionObject = null;
-
             cambiarEstado(EstadoArmada.PATRULLANDO);
         }
     }
@@ -109,13 +108,13 @@ public class Armada : MonoBehaviour
         //todo
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
+    void OnTriggerEnter2D(Collider2D coll)
     {
         if (estadoActual == EstadoArmada.PATRULLANDO && coll.transform != null)
         {
             listaColisiones.Add(coll.transform.gameObject);
         }
-        MonoBehaviour.print("collision detectada ARMADA");
+        //MonoBehaviour.print("collision detectada por ARMADA");
     }
 
 }

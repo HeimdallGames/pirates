@@ -6,8 +6,10 @@ using UnityEngine.AI;
 public class Movimiento
 {
     [HideInInspector] private IAstarAI iaAgent;
+    [HideInInspector] private float limeteY = 87.0f;
+    [HideInInspector] private  float limeteX = 45.0f;
     [HideInInspector] private Vector2 initialPos;
-    [HideInInspector] private Vector2 lastPos;
+    [HideInInspector] private Vector2 objectiveDestination;
     [SerializeField] private Vector2 nextPatroll;
     [HideInInspector] private float extraEndDistance;
     [HideInInspector] private float extraPatroll;
@@ -17,7 +19,7 @@ public class Movimiento
     {
         iaAgent = newIaAgente;
         extraEndDistance = newExtraEndDistance;
-        lastPos = initialPos = getPos();
+        objectiveDestination = initialPos = getPos();
     }
     public Movimiento(IAstarAI newIaAgente, float newExtraEndDistance, float newPatrolRadius, float newExtraPatroll)
     : this(newIaAgente, newExtraEndDistance)
@@ -31,7 +33,7 @@ public class Movimiento
     {
         float newPatrolDistance = Random.Range(0.0f, patrolRadius);
         float randomAngle = Random.Range(0.0f, Mathf.PI + Mathf.PI); ;
-        nextPatroll = new Vector2(initialPos.x + newPatrolDistance * Mathf.Cos(randomAngle), initialPos.y + newPatrolDistance * Mathf.Sin(randomAngle));
+        nextPatroll = new Vector2(Mathf.Clamp(initialPos.x + newPatrolDistance * Mathf.Cos(randomAngle),-limeteX,limeteX), Mathf.Clamp( initialPos.y + newPatrolDistance * Mathf.Sin(randomAngle),-limeteY,limeteY));
         //MonoBehaviour.print("N:"+nextPatroll);
     }
     public void stopMovement()
@@ -56,9 +58,7 @@ public class Movimiento
         }
         else
         {
-            iaAgent.isStopped = false;        
-            iaAgent.destination = new Vector3(nextPatroll.x,nextPatroll.y,0);
-            iaAgent.SearchPath();
+            cambiarDestino(nextPatroll);
         }
     }
     public bool updateMovement(Vector2 destination)
@@ -70,20 +70,33 @@ public class Movimiento
         }
         else
         {
-            iaAgent.isStopped = false;        
-            iaAgent.destination = new Vector3(destination.x,destination.y,0);
-            iaAgent.SearchPath();
+            cambiarDestino(destination);
             return false;
         }
     }
 
-    public float huir(Vector2 destination)
+    public float huir(Vector2 huirDe)
     {
-        Vector2 distance = 2 * getPos() - destination;
-        iaAgent.isStopped = false;        
-        iaAgent.destination = new Vector3(destination.x,destination.y,0);
-        iaAgent.SearchPath();
-        return distance.magnitude;
+        Vector2 actualPos = getPos();
+        Vector2 destination = actualPos+actualPos-huirDe;
+        destination = new Vector2(Mathf.Clamp(destination.x, -limeteX, limeteX),Mathf.Clamp(actualPos.y, -limeteY, limeteY));
+        cambiarDestino(destination);
+        return (destination-actualPos).magnitude;
+    }
+
+    private void cambiarDestino(Vector2 newObjective)
+    {
+        if((objectiveDestination-newObjective).magnitude > 0.1f)
+        {
+            //MonoBehaviour.print("Destino cambiado: "+newObjective+" -> "+objectiveDestination);
+            objectiveDestination = newObjective;        
+            iaAgent.destination = new Vector3(newObjective.x,newObjective.y,0);
+            iaAgent.isStopped = false;
+            iaAgent.SearchPath();
+        }
+        else{
+            iaAgent.isStopped = false;
+        }
     }
     public Vector2 getInitialPos(){
         return initialPos;
