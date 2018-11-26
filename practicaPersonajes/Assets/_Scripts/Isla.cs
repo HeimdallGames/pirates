@@ -51,7 +51,7 @@ public class Isla : MonoBehaviour
         float felicidad, beneficios = 0;
         float distancia = comerciante_.getMovimiento().distance(actualPos);
 
-		if (comerciante_.getMadera () || comerciante_.getTabaco () || comerciante_.getComida () != 0)
+		if (comerciante_.getMadera () != 0 || comerciante_.getTabaco () != 0 || comerciante_.getComida () != 0)
 			beneficios = comerciante_.getMadera () * precioMadera + comerciante_.getTabaco () * precioTabaco + comerciante_.getComida () * precioComida;
 		else 
 		{
