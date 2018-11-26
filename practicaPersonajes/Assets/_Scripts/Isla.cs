@@ -59,7 +59,7 @@ public class Isla : MonoBehaviour
 				beneficios = 1000000;
 		}
         felicidad = (40 * distancia + 60 * beneficios) / 100;
-        return Mathf.CeilToInt(distancia);
+        return Mathf.CeilToInt(felicidad);
     }
 
     public void avisarBarcoEsperando(Comerciante comerciante)
@@ -71,9 +71,6 @@ public class Isla : MonoBehaviour
 
 	public void obtenerRecursos(Comerciante comerciante)
 	{
-		//simula que esta obteniendo materias 
-		StartCoroutine(esperar(2, comerciante));
-
 		switch (tipoActual)
 		{
 		case tipos.COMIDA:
@@ -94,31 +91,36 @@ public class Isla : MonoBehaviour
 
     public void comerciarConBarco(Comerciante comerciante)
     {
-        //COMERCIO MADERA	
-        if (comerciante.getMadera() > 0)
+        if (tipoActual == tipos.COMERCIO)
         {
-            this.madera += comerciante.getMadera();
-            comerciante.setOro(comerciante.getMadera() * precioMadera);
-            this.oro -= comerciante.getMadera() * precioMadera;
-            comerciante.setMadera(0);
-        }
+            //COMERCIO MADERA	
+            if (comerciante.getMadera() > 0)
+            {
+                this.madera += comerciante.getMadera();
+                comerciante.setOro(comerciante.getMadera() * precioMadera);
+                this.oro -= comerciante.getMadera() * precioMadera;
+                comerciante.setMadera(0);
+            }
 
-        //COMERCIO TABACO
-        if (comerciante.getTabaco() > 0)
-        {
-            this.tabaco += comerciante.getTabaco();
-            comerciante.setOro(comerciante.getTabaco() * precioTabaco);
-            this.oro -= comerciante.getTabaco() * precioTabaco;
-            comerciante.setTabaco(0);
+            //COMERCIO TABACO
+            if (comerciante.getTabaco() > 0)
+            {
+                this.tabaco += comerciante.getTabaco();
+                comerciante.setOro(comerciante.getTabaco() * precioTabaco);
+                this.oro -= comerciante.getTabaco() * precioTabaco;
+                comerciante.setTabaco(0);
+            }
+            //COMERCIO COMIDA ??
+            if (comerciante.getComida() > 0)
+            {
+                this.comida += comerciante.getComida();
+                comerciante.setOro(comerciante.getComida() * precioComida);
+                this.oro -= comerciante.getComida() * precioComida;
+                comerciante.setComida(0);
+            }
         }
-        //COMERCIO COMIDA ??
-        if (comerciante.getComida() > 0)
-        {
-            this.comida += comerciante.getComida();
-            comerciante.setOro(comerciante.getComida() * precioComida);
-            this.oro -= comerciante.getComida() * precioComida;
-            comerciante.setComida(0);
-        }
+        else { obtenerRecursos(comerciante); }
+
     }
 
     void Update()
