@@ -50,10 +50,15 @@ public class Isla : MonoBehaviour
     {
         float felicidad, beneficios = 0;
         float distancia = comerciante_.getMovimiento().distance(actualPos);
-        //MonoBehaviour.print("madera: " + comerciante_.getMadera() + " oro: " + comerciante_.getOro() + " tabaco: " + comerciante_.getTabaco() + " comida: " + comerciante_.getComida() + " distancia: " + distancia);
-        beneficios = comerciante_.getMadera() * precioMadera + comerciante_.getTabaco() * precioTabaco + comerciante_.getComida() * precioComida;
+
+		if (comerciante_.getMadera () || comerciante_.getTabaco () || comerciante_.getComida () != 0)
+			beneficios = comerciante_.getMadera () * precioMadera + comerciante_.getTabaco () * precioTabaco + comerciante_.getComida () * precioComida;
+		else 
+		{
+			if (tipoActual != tipos.COMERCIO)
+				beneficios = 1000000;
+		}
         felicidad = (40 * distancia + 60 * beneficios) / 100;
-        //Debug.Log (felicidad + " felicidad y " + beneficios + " beneficios");
         return Mathf.CeilToInt(distancia);
     }
 
@@ -61,10 +66,31 @@ public class Isla : MonoBehaviour
     {
         //wait 3 s
         comerciante.setEspera(true);
-        Debug.Log("Comerciente: " + comerciante.name + " A esperar");
-        StartCoroutine(esperar(3, comerciante));
-        //volver a esperar en otra isla hasta que pueda comerciar	
+		StartCoroutine(esperar(3, comerciante));
     }
+
+	public void obtenerRecursos(Comerciante comerciante)
+	{
+		//simula que esta obteniendo materias 
+		StartCoroutine(esperar(2, comerciante));
+
+		switch (tipoActual)
+		{
+		case tipos.COMIDA:
+			comida -= 500;
+			comerciante.setComida (comerciante.getComida() + 500);
+			break;
+		case tipos.TABACO:
+			tabaco -= 500;
+			comerciante.setTabaco (comerciante.getTabaco() + 500);
+			break;
+		case tipos.MADERA:
+			madera -= 500;
+			comerciante.setMadera (comerciante.getMadera () + 500);
+			break;
+		}
+
+	}
 
     public void comerciarConBarco(Comerciante comerciante)
     {
