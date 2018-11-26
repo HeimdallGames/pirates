@@ -16,7 +16,7 @@ public class Pirata : MonoBehaviour
     [SerializeField] private float Patroll = 5f;
     [SerializeField] private float patrollRadius = 22f;
 
-    public enum EstadoPirata { ESPERAR_BARCO, ATACAR, HUIR, CONSEGUIR_BOTIN, REFRESANDO, DESTRUIDO };
+    public enum EstadoPirata { ESPERAR_BARCO, ATACAR, HUIR, CONSEGUIR_BOTIN, DESTRUIDO };
     [SerializeField] private EstadoPirata estadoActual;
 
 	[SerializeField] private Comerciante target;
@@ -61,9 +61,6 @@ public class Pirata : MonoBehaviour
             case EstadoPirata.HUIR:
                 stateUpdate = updateHuyendo;
                 break;
-            case EstadoPirata.REFRESANDO:
-                stateUpdate = updateRegresando;
-                break;
             case EstadoPirata.DESTRUIDO:
                 stateUpdate = updateDestruido;
                 break;
@@ -75,12 +72,6 @@ public class Pirata : MonoBehaviour
         return movimiento;
     }
 
-    private void updateRegresando()
-    {
-        if(movimiento.updateMovement(movimiento.getInitialPos())){
-            cambiarEstado(EstadoPirata.ESPERAR_BARCO);
-        }
-    }
      private void updateDestruido()
     {
         mundo.addRespawn(prefab,transform.position,transform.rotation, 4);
@@ -90,13 +81,15 @@ public class Pirata : MonoBehaviour
     {
         if(movimiento.updateMovement (target.getMovimiento().getPos()))
         {
+            collisionObject = null;
             cambiarEstado(EstadoPirata.CONSEGUIR_BOTIN);
         }
     }
     private void updateHuyendo()
     {
         if(movimiento.huir(huyendoDe.getMovimiento().getPos())<huyendoDistance){
-            cambiarEstado(EstadoPirata.REFRESANDO);
+            collisionObject = null;
+            cambiarEstado(EstadoPirata.ESPERAR_BARCO);
         }
 
     }
@@ -114,8 +107,8 @@ public class Pirata : MonoBehaviour
     }
     private void updateConsiguiendoBotin()
     {
-        MonoBehaviour.print("El pirata: "+transform.name+"esta consiguiendo su botin.");
-        cambiarEstado(EstadoPirata.REFRESANDO);
+        MonoBehaviour.print("El pirata: "+transform.name+" esta consiguiendo su botin.");
+        cambiarEstado(EstadoPirata.ESPERAR_BARCO);
         target.atracar();
         
     }
@@ -124,7 +117,7 @@ public class Pirata : MonoBehaviour
     /*COLISIONES*/
 	void OnCollisionEnter2D(Collision2D coll)
 	{
-        if( estadoActual ==  EstadoPirata.ESPERAR_BARCO && coll.transform.parent != null)
+        if( coll.transform.parent != null)
         {
         listaColisiones.Add(coll.transform.parent.gameObject);
         }

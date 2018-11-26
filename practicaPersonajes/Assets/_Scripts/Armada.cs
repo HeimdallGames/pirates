@@ -76,9 +76,8 @@ public class Armada : MonoBehaviour
     private void updatePatrullando()
     {
 
-        if (collisionObject != null && collisionObject.tag == "Comerciante")
+        if (collisionObject != null && collisionObject.tag == "Pirata")
         {
-
             Persiguiendo = collisionObject.GetComponent<Pirata>();
             Persiguiendo.detectadoPorArmada(this);
             cambiarEstado(EstadoArmada.PERSIGUE);
@@ -103,11 +102,11 @@ public class Armada : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D coll)
     {
-        if (estadoActual == EstadoArmada.PATRULLANDO && coll.transform.parent != null)
+        if (estadoActual == EstadoArmada.PATRULLANDO && coll.transform != null)
         {
-            listaColisiones.Add(coll.transform.parent.gameObject);
+            listaColisiones.Add(coll.transform.gameObject);
         }
-        MonoBehaviour.print("collision detectada");
+        MonoBehaviour.print("collision detectada ARMADA");
     }
 
 }
