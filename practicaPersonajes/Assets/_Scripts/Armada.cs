@@ -79,8 +79,11 @@ public class Armada : MonoBehaviour
         if (collisionObject != null && collisionObject.tag == "Pirata")
         {
             Persiguiendo = collisionObject.GetComponent<Pirata>();
-            Persiguiendo.detectadoPorArmada(this);
-            cambiarEstado(EstadoArmada.PERSIGUE);
+            if (Persiguiendo.atacando)
+            {
+                Persiguiendo.detectadoPorArmada(this);
+                cambiarEstado(EstadoArmada.PERSIGUE);
+            }
         }
         else
         {
@@ -93,7 +96,12 @@ public class Armada : MonoBehaviour
     }
     private void updatePersiguiendo()
     {
-        //todo
+        if (movimiento.updateMovement(Persiguiendo.getMovimiento().getPos()))
+        {
+            collisionObject = null;
+
+            cambiarEstado(EstadoArmada.PATRULLANDO);
+        }
     }
     private void updateAcompanando()
     {

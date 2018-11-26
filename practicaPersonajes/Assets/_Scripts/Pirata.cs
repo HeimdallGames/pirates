@@ -23,6 +23,7 @@ public class Pirata : MonoBehaviour
     [SerializeField] private Armada huyendoDe;
     [SerializeField] private List<GameObject> listaColisiones;
     [SerializeField] private GameObject collisionObject;
+    public bool atacando = false;
 
     //FSM
     private delegate void StateUpdate();
@@ -79,6 +80,7 @@ public class Pirata : MonoBehaviour
     }
     private void updateAtacando()
     {
+        atacando = true;
         if(movimiento.updateMovement (target.getMovimiento().getPos()))
         {
             collisionObject = null;
