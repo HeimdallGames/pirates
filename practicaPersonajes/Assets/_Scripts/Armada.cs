@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -33,8 +34,8 @@ public class Armada : MonoBehaviour
     private EstadoArmada estadoActual;
     void Start()
     {
-        NavMeshAgent agent = transform.GetChild(1).GetComponent<NavMeshAgent>();
-        movimiento = new Movimiento(agent, transform.GetChild(0), extraEndDistance, patrollRadius, extraPatroll);
+        IAstarAI agent = transform.GetComponent<IAstarAI>();
+        movimiento = new Movimiento(agent, extraEndDistance, patrollRadius, extraPatroll);
         cambiarEstado(EstadoArmada.PATRULLANDO);
         collisionObject = null;
     }
@@ -80,7 +81,7 @@ public class Armada : MonoBehaviour
         {
             Persiguiendo = collisionObject.GetComponent<Pirata>();
             Persiguiendo.detectadoPorArmada(this);
-            cambiarEstado(EstadoArmada.PERSIGUE);
+            //cambiarEstado(EstadoArmada.PERSIGUE);
         }
         else
         {

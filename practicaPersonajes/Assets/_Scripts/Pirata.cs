@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -29,8 +30,8 @@ public class Pirata : MonoBehaviour
     private StateUpdate stateUpdate;
     void Start()
     {
-        NavMeshAgent agent = transform.GetChild(1).GetComponent<NavMeshAgent>();
-        movimiento = new Movimiento(agent, transform.GetChild(0), EndDistance, patrollRadius, Patroll);
+        IAstarAI agent = transform.GetComponent<IAstarAI>();
+        movimiento = new Movimiento(agent, EndDistance, patrollRadius, Patroll);
         cambiarEstado(EstadoPirata.ESPERAR_BARCO);
         collisionObject = null;
     }

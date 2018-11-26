@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -35,9 +36,9 @@ public class Comerciante : MonoBehaviour
     {
         cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
         islaDestino = mundo.islas[0];
-        NavMeshAgent agent = transform.GetChild(1).GetComponent<NavMeshAgent>();
-        movimiento = new Movimiento(agent, transform.GetChild(0), extraEndDistance);
-        Canvas canvas = transform.GetChild(0).GetChild(0).GetComponent<Canvas>();
+        IAstarAI agent = transform.GetComponent<IAstarAI>();
+        movimiento = new Movimiento(agent, extraEndDistance);
+        Canvas canvas = transform.GetChild(0).GetComponent<Canvas>();
         canvasRecursos = new CanvasRecursos(canvas, oro, madera, tabaco, comida);
         esperando = true;
     }

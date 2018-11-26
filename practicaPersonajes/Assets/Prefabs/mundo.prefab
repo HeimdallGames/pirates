@@ -19,10 +19,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4907095804448992}
-  - component: {fileID: 33363529707968724}
-  - component: {fileID: 23952492073615798}
   - component: {fileID: 114850114234210864}
-  - component: {fileID: 114415938584703694}
+  - component: {fileID: 114756131157413512}
   m_Layer: 0
   m_Name: mundo
   m_TagString: Untagged
@@ -43,49 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!23 &23952492073615798
-MeshRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1836129082925576}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
-  m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &33363529707968724
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1836129082925576}
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &114415938584703694
+--- !u!114 &114756131157413512
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -93,26 +49,84 @@ MonoBehaviour:
   m_GameObject: {fileID: 1836129082925576}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Script: {fileID: 11500000, guid: 78396926cbbfc4ac3b48fc5fc34a87d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
-  m_LayerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_UseGeometry: 0
-  m_DefaultArea: 0
-  m_IgnoreNavMeshAgent: 1
-  m_IgnoreNavMeshObstacle: 1
-  m_OverrideTileSize: 0
-  m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.6666667
-  m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 45cb4f5facfd5024bbcc6f09166df24b, type: 2}
+  version: 1
+  data:
+    dataString: UEsDBBQAAAgIAAAIIewxUfG+OQIAAMkEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VMuS2jAQ/BVK55CyCbBLbolhSQ4s1LKpXHwR1hirkCWXHsur+PeMZIMNqT1Znu4Zdc+MfSZcmgoyq/Rcc7ZQDMj3HvFn8qVHaMDeqOUKwzFGuFElWM2zH3IrPDfCoJM8V7qcsS0kyliD4ZwKAwhpZX22xNC5Rw746E98yhFPgyd/OuFpEvUueMxAWtAt9Uq80mqWk5mgZQVszU/QkuNb3TgaBaJENw1n5KsrIbhptBB7rILVN3r0Thmn6Ctc7m0WwLeF9Rq7ics8N2AbQZoep1xje+qK5Keyha9UUrOrVX1Q4fwdcVBTl1z8h/ZrONeq/HW9NY78Dbbg2Q71ZdTYTku74em9bCf3VOzoRsDfAuSrmmvlJEPQaudTnYHBtH29GUsKyHZtvJb6EHTV54PxHi7B+yERvNx46OuwDqyFCp0O4wGNM/mNgsNSmKYERr2KPwbe6ba7PQ3wwrWxCDUupZe3UU57KpmFnnk3ziZKS9DdChVIKuxxhXXs4wQfsM+zXqj/QJrbG+y6/w8pIdzyo+gBWqn9bVqmUPsFmGLprOAS2lZ74BUblSgp6wXrWrqmrZ3OadZJ2zrO7neLPE+Go290PGLDUbx5osN+RIfjQTyCzWb8zAb5hITl4xJ9UrGqhTbtwbHJtrjERbv+GnpzTauw7EzT/ZyfSmVaJpe5WmcaQC7vKhjQeAd+j2zGOPZnDdZyGeZNzikRKtsBS2/8NBidHaymaes+JRX/UNZHUpKE/0VKLuTyD1BLAwQUAAAICAAACCHsNjjle2wAAAB3AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9Iz1lFQSi9KLMgoBgoYgjilmSkgdrSShaWJqXGimWmKialhknmiia5BoomZkaFpalKSmUWKUZqlUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAIIewxUfG+OQIAAMkEAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAIIew2OOV7bAAAAHcAAAAJACQAAAAAAAAAAAAAAIYCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAPQMAAAAA
+    upgradeData: 
+    file_cachedStartup: {fileID: 0}
+    data_cachedStartup: 
+    cacheStartup: 0
+  showNavGraphs: 1
+  showUnwalkableNodes: 0
+  debugMode: 0
+  debugFloor: 0
+  debugRoof: 1
+  manualDebugFloorRoof: 0
+  showSearchTree: 0
+  unwalkableNodeDebugSize: 0.3
+  logPathResults: 1
+  maxNearestNodeDistance: 100
+  scanOnStartup: 1
+  fullGetNearestSearch: 0
+  prioritizeGraphs: 0
+  prioritizeGraphsLimit: 1
+  colorSettings:
+    _SolidColor: {r: 0.11764706, g: 0.4, b: 0.7882353, a: 0.9}
+    _UnwalkableNode: {r: 1, g: 0, b: 0, a: 0.5}
+    _BoundsHandles: {r: 0.29, g: 0.454, b: 0.741, a: 0.9}
+    _ConnectionLowLerp: {r: 0, g: 1, b: 0, a: 0.5}
+    _ConnectionHighLerp: {r: 1, g: 0, b: 0, a: 0.5}
+    _MeshEdgeColor: {r: 0, g: 0, b: 0, a: 0.5}
+    _AreaColors:
+    - {r: 0, g: 0, b: 0, a: 0}
+  tagNames:
+  - Basic Ground
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  - 9
+  - 10
+  - 11
+  - 12
+  - 13
+  - 14
+  - 15
+  - 16
+  - 17
+  - 18
+  - 19
+  - 20
+  - 21
+  - 22
+  - 23
+  - 24
+  - 25
+  - 26
+  - 27
+  - 28
+  - 29
+  - 30
+  - 31
+  heuristic: 2
+  heuristicScale: 1
+  threadCount: 0
+  maxFrameTime: 1
+  batchGraphUpdates: 0
+  graphUpdateBatchingInterval: 0.2
+  euclideanEmbedding:
+    mode: 0
+    seed: 0
+    pivotPointRoot: {fileID: 0}
+    spreadOutCount: 1
+  showGraphs: 1
 --- !u!114 &114850114234210864
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -124,4 +138,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd79aab2976b15408c2d0e74f6bbef4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  islas: []
+  islas:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  respawnListObject: []
+  respawnListPositions: []
+  respawnListRotations: []
+  respawnListEsperas: 

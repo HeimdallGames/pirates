@@ -1,27 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Pathfinding;
 using UnityEngine;
 using UnityEngine.AI;
 public class Movimiento
 {
-    [HideInInspector] private NavMeshAgent navMesh;
+    [HideInInspector] private IAstarAI iaAgent;
     [HideInInspector] private Vector2 initialPos;
     [HideInInspector] private Vector2 lastPos;
     [SerializeField] private Vector2 nextPatroll;
     [HideInInspector] private float extraEndDistance;
     [HideInInspector] private float extraPatroll;
     [HideInInspector] private float patrolRadius;
-    [HideInInspector] private Transform objectTransform;
 
-    public Movimiento(NavMeshAgent newNavMesh, Transform newTransform, float newExtraEndDistance)
+    public Movimiento(IAstarAI newIaAgente, float newExtraEndDistance)
     {
-        navMesh = newNavMesh;
-        objectTransform = newTransform;
+        iaAgent = newIaAgente;
         extraEndDistance = newExtraEndDistance;
         lastPos = initialPos = getPos();
     }
-    public Movimiento(NavMeshAgent newNavMesh, Transform newTransform, float newExtraEndDistance, float newPatrolRadius, float newExtraPatroll)
-    : this(newNavMesh, newTransform, newExtraEndDistance)
+    public Movimiento(IAstarAI newIaAgente, float newExtraEndDistance, float newPatrolRadius, float newExtraPatroll)
+    : this(newIaAgente, newExtraEndDistance)
     {
         patrolRadius = newPatrolRadius;
         extraPatroll = newExtraPatroll;
@@ -37,7 +36,7 @@ public class Movimiento
     }
     public void stopMovement()
     {
-        navMesh.isStopped = true;
+        iaAgent.isStopped = true;
     }
 
     public float distance(Vector2 destination)
@@ -46,7 +45,7 @@ public class Movimiento
     }
     public Vector2 getPos()
     {
-        return new Vector2(navMesh.transform.position.x, navMesh.transform.position.y);
+        return new Vector2(iaAgent.position.x, iaAgent.position.y);
     }
 
     public void patrullar()
@@ -57,10 +56,9 @@ public class Movimiento
         }
         else
         {
-            navMesh.destination = nextPatroll;
-            navMesh.isStopped = false;
-            objectTransform.position = new Vector3(navMesh.transform.position.x, navMesh.transform.position.y, 0);
-            objectTransform.rotation = Quaternion.Euler(0, 0, getRotation());
+            iaAgent.isStopped = false;        
+            iaAgent.destination = new Vector3(nextPatroll.x,nextPatroll.y,0);
+            iaAgent.SearchPath();
         }
     }
     public bool updateMovement(Vector2 destination)
@@ -72,10 +70,9 @@ public class Movimiento
         }
         else
         {
-            navMesh.destination = destination;
-            navMesh.isStopped = false;
-            objectTransform.position = new Vector3(navMesh.transform.position.x, navMesh.transform.position.y, 0);
-            objectTransform.rotation = Quaternion.Euler(0, 0, getRotation());
+            iaAgent.isStopped = false;        
+            iaAgent.destination = new Vector3(destination.x,destination.y,0);
+            iaAgent.SearchPath();
             return false;
         }
     }
@@ -83,54 +80,12 @@ public class Movimiento
     public float huir(Vector2 destination)
     {
         Vector2 distance = 2 * getPos() - destination;
-        navMesh.destination = destination;
-        navMesh.isStopped = false;
-        objectTransform.position = new Vector3(navMesh.transform.position.x, navMesh.transform.position.y, 0);
-        objectTransform.rotation = Quaternion.Euler(0, 0, getRotation());
+        iaAgent.isStopped = false;        
+        iaAgent.destination = new Vector3(destination.x,destination.y,0);
+        iaAgent.SearchPath();
         return distance.magnitude;
     }
-
-    public static float getAngle(Vector2 v1)
-    {
-        if (v1.x == 0.0f || v1.y == 0.0f)
-        {
-            return 0.0f;
-        }
-        else
-        {
-            float angle = Mathf.Atan(Mathf.Abs(v1.y / v1.x)) * Mathf.Rad2Deg;
-            if (v1.y < 0.0f)
-            {
-                if (v1.x < 0.0f)
-                {
-                    return angle + 90;
-                }
-                else
-                {
-                    return angle + 180;
-                }
-            }
-            else if (v1.x < 0.0f)
-            {
-                return angle;
-            }
-            else
-            {
-                return angle + 270;
-            }
-
-        }
-    }
-
     public Vector2 getInitialPos(){
         return initialPos;
-    }
-    public float getRotation()
-    {
-        Vector2 actualPos = getPos();
-        Vector2 velocity = lastPos - actualPos;
-        float velocityAngle = getAngle(velocity);
-        lastPos = actualPos;
-        return velocityAngle;
     }
 }
