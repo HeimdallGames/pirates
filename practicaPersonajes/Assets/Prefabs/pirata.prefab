@@ -53,7 +53,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1874513242051252}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -118,10 +118,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 2
-  repathRate: Infinity
+  repathRate: 50
   canSearch: 1
   canMove: 1
-  speed: 6
+  speed: 9
   orientation: 1
   enableRotation: 1
   rotationSpeed: 30
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mundo: {fileID: 0}
   prefab: {fileID: 0}
-  EndDistance: 15
+  EndDistance: 8
   huyendoDistance: 15
   Patroll: 5
   patrollRadius: 22

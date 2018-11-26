@@ -75,7 +75,7 @@ public class Pirata : MonoBehaviour
         return movimiento;
     }
 
-     private void updateDestruido()
+    private void updateDestruido()
     {
         mundo.addRespawn(prefab,transform.position,transform.rotation, 4);
         Destroy(gameObject);
@@ -94,11 +94,13 @@ public class Pirata : MonoBehaviour
         if(movimiento.huir(huyendoDe.getMovimiento().getPos())<huyendoDistance){
             collisionObject = null;
             cambiarEstado(EstadoPirata.ESPERAR_BARCO);
+            huyendoDe.cancelarPersecucion();
         }
 
     }
     private void updateEsperandoBarco()
     {
+        atacando = false;
         if ( collisionObject != null && collisionObject.tag == "Comerciante")
         {
             MonoBehaviour.print("analizado collison object");
@@ -135,5 +137,12 @@ public class Pirata : MonoBehaviour
         huyendoDe = armada;
         cambiarEstado(EstadoPirata.HUIR);
         MonoBehaviour.print("El pirata: "+transform.name+" ha sido detectado por la armada.");
+    }
+
+    public void barcoDestruido()
+    {
+        cambiarEstado(EstadoPirata.DESTRUIDO);
+
+
     }
 }
