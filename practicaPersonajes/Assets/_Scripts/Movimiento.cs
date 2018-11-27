@@ -6,10 +6,11 @@ using UnityEngine.AI;
 public class Movimiento
 {
     [HideInInspector] private IAstarAI iaAgent;
-    [HideInInspector] private float limeteY = 87.0f;
-    [HideInInspector] private  float limeteX = 45.0f;
+    [HideInInspector] private float limeteX = 86.0f;
+    [HideInInspector] private  float limeteY = 44.0f;
     [HideInInspector] private Vector2 initialPos;
     [HideInInspector] private Vector2 objectiveDestination;
+    [HideInInspector] private Vector2 huyendoDe;
     [SerializeField] private Vector2 nextPatroll;
     [HideInInspector] private float extraEndDistance;
     [HideInInspector] private float extraPatroll;
@@ -77,12 +78,24 @@ public class Movimiento
 
     public float huir(Vector2 huirDe)
     {
+        
         Vector2 actualPos = getPos();
-        Vector2 destination = actualPos+actualPos-huirDe;
-        destination = new Vector2(Mathf.Clamp(destination.x, -limeteX, limeteX),Mathf.Clamp(actualPos.y, -limeteY, limeteY));
-        cambiarDestino(destination);
-        return (destination-actualPos).magnitude;
+        Vector2 distanciaHuida = huirDe-actualPos;
+        if((huyendoDe-huirDe).magnitude > 0.15f)
+        {
+            huyendoDe = huirDe;
+            float factorX = (distanciaHuida.normalized.x > 0)
+                ? Mathf.Abs((-limeteX-actualPos.x)/distanciaHuida.normalized.x)
+                : Mathf.Abs((limeteX-actualPos.x)/distanciaHuida.normalized.x);
+            float factorY = (distanciaHuida.normalized.y > 0)
+                ? Mathf.Abs((-limeteY-actualPos.y)/distanciaHuida.normalized.y)
+                : Mathf.Abs((limeteY-actualPos.y)/distanciaHuida.normalized.y);
+            Vector2 v = actualPos-Mathf.Min(factorX,factorY)*distanciaHuida.normalized;
+            cambiarDestino(v);
+        }
+        return distanciaHuida.magnitude;
     }
+        
 
     private void cambiarDestino(Vector2 newObjective)
     {
