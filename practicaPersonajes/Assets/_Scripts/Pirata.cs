@@ -77,6 +77,7 @@ public class Pirata : MonoBehaviour
 
     private void updateDestruido()
     {
+        MonoBehaviour.print("PIRATA destruido");
         mundo.addRespawn(prefab,transform.position,transform.rotation, 4);
         Destroy(gameObject);
     }
@@ -134,9 +135,11 @@ public class Pirata : MonoBehaviour
 
     //COMUNICACION
     public void detectadoPorArmada(Armada armada){
+        atacando = false;
         huyendoDe = armada;
         cambiarEstado(EstadoPirata.HUIR);
         MonoBehaviour.print("El pirata: "+transform.name+" ha sido detectado por la armada.");
+       
     }
 
     public void barcoDestruido()

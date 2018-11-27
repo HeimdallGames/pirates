@@ -40,7 +40,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1874513242051252}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 60.9, y: -31.6, z: 0}
+  m_LocalPosition: {x: -41.8, y: -4.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -121,7 +121,7 @@ MonoBehaviour:
   repathRate: 50
   canSearch: 1
   canMove: 1
-  speed: 9
+  speed: 6
   orientation: 1
   enableRotation: 1
   rotationSpeed: 30
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mundo: {fileID: 0}
-  prefab: {fileID: 0}
+  prefab: {fileID: 4545488382102858}
   EndDistance: 8
   huyendoDistance: 15
   Patroll: 5

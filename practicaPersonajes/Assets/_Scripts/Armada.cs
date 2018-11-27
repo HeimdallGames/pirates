@@ -88,9 +88,15 @@ public class Armada : MonoBehaviour
                 Persiguiendo.detectadoPorArmada(this);
                 cambiarEstado(EstadoArmada.PERSIGUE);
             }
+            else
+            {
+                collisionObject = null;
+                movimiento.patrullar();
+            }
         }
         else
         {
+            collisionObject = null;
             movimiento.patrullar();
         }
     }
@@ -100,16 +106,35 @@ public class Armada : MonoBehaviour
     }
     private void updatePersiguiendo()
     {
+
+
         if (movimiento.updateMovement(Persiguiendo.getMovimiento().getPos()))
         {
             collisionObject = null;
 
             cambiarEstado(EstadoArmada.ATRAPAR);
         }
+        
+
+
     }
     private void updateAcompanando()
     {
-        
+
+       /* if (collisionObject != null && collisionObject.tag == "Comerciante")
+        {
+            Llamada = collisionObject.GetComponent<Comerciante>();
+
+        }
+        */
+        if (movimiento.updateMovement(Llamada.getMovimiento().getPos()))
+        {
+            
+            collisionObject = null;
+
+            cambiarEstado(EstadoArmada.PATRULLANDO);
+        }
+
     }
 
     private void updateAtraparPirata()
@@ -132,7 +157,16 @@ public class Armada : MonoBehaviour
 
     public void cancelarPersecucion()
     {
-        cambiarEstado(EstadoArmada.ACOMPANA_COMERCIANTE);
+       
+        collisionObject = null;
+        Persiguiendo = null;
+        if (collisionObject != null && collisionObject.tag == "Comerciante")
+        {
+            Llamada = collisionObject.GetComponent<Comerciante>();
+            MonoBehaviour.print("CANCELADA");
+            cambiarEstado(EstadoArmada.ACOMPANA_COMERCIANTE);
+        }
+        
     }
 
 }

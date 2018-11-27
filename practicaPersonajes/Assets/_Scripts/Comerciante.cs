@@ -173,4 +173,7 @@ public class Comerciante : MonoBehaviour
         cambiarEstado(EstadoComerciante.HUIR);
         MonoBehaviour.print("El comerciante: "+transform.name+" esta siendo perseguido.");
     }
+
+   
+
 }
