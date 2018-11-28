@@ -12,7 +12,7 @@ public class Pirata : MonoBehaviour
 
 
     [SerializeField] private float EndDistance = 15f;
-    [SerializeField] private float huyendoDistance = 15f;
+    [SerializeField] private float huyendoDistance = 59.1f;
 
     [SerializeField] private float Patroll = 5f;
     [SerializeField] private float patrollRadius = 22f;
@@ -24,7 +24,6 @@ public class Pirata : MonoBehaviour
     [SerializeField] private Armada huyendoDe;
     [SerializeField] private List<GameObject> listaColisiones;
     [SerializeField] private GameObject collisionObject;
-    public bool atacando = false;
 
     //FSM
     private delegate void StateUpdate();
@@ -83,7 +82,6 @@ public class Pirata : MonoBehaviour
     }
     private void updateAtacando()
     {
-        atacando = true;
         if (movimiento.updateMovement(target.getMovimiento().getPos()))
         {
             collisionObject = null;
@@ -92,7 +90,7 @@ public class Pirata : MonoBehaviour
     }
     private void updateHuyendo()
     {
-        if (movimiento.huir(huyendoDe.getMovimiento().getPos()) < huyendoDistance)
+        if (movimiento.huir(huyendoDe.getMovimiento().getPos()) > huyendoDistance)
         {
             collisionObject = null;
             cambiarEstado(EstadoPirata.ESPERAR_BARCO);
@@ -102,8 +100,7 @@ public class Pirata : MonoBehaviour
     }
     private void updateEsperandoBarco()
     {
-        atacando = false;
-        if (collisionObject != null && collisionObject.tag == "Comerciante")
+        if (collisionObject != null)
         {
             MonoBehaviour.print("analizado collison object");
             target = collisionObject.GetComponent<Comerciante>();
@@ -127,7 +124,7 @@ public class Pirata : MonoBehaviour
     /*COLISIONES*/
     void OnTriggerEnter2D(Collider2D coll)
     {
-        if (coll.transform != null)
+        if (coll.transform != null && coll.transform.gameObject.tag == "Comerciante")
         {
             MonoBehaviour.print("collision detectada por PIRATA no nula");
             listaColisiones.Add(coll.transform.gameObject);
@@ -138,7 +135,6 @@ public class Pirata : MonoBehaviour
     //COMUNICACION
     public void detectadoPorArmada(Armada armada)
     {
-        atacando = false;
         huyendoDe = armada;
         cambiarEstado(EstadoPirata.HUIR);
         MonoBehaviour.print("El pirata: " + transform.name + " ha sido detectado por la armada.");

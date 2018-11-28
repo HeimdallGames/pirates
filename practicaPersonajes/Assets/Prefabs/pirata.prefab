@@ -167,9 +167,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mundo: {fileID: 0}
-  prefab: {fileID: 4545488382102858}
+  prefab: {fileID: 0}
   EndDistance: 8
-  huyendoDistance: 15
+  huyendoDistance: 59.1
   Patroll: 5
   patrollRadius: 22
   estadoActual: 0
@@ -177,7 +177,6 @@ MonoBehaviour:
   huyendoDe: {fileID: 0}
   listaColisiones: []
   collisionObject: {fileID: 0}
-  atacando: 0
 --- !u!212 &212518327904595118
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -491,10 +491,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 0}
   extraEndDistance: 8.5
+  distanciaEscape: 59.1
   mundo: {fileID: 0}
   estadoActual: 0
   islaDestino: {fileID: 0}
   huyendoPirata: {fileID: 0}
+  salvadoPor: {fileID: 0}
   oro: 0
   madera: 25
   tabaco: 0

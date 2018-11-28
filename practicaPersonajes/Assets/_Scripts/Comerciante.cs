@@ -10,6 +10,7 @@ public class Comerciante : MonoBehaviour
     [SerializeField] public Transform prefab;
     [HideInInspector] private Movimiento movimiento;
     [SerializeField] private float extraEndDistance = 8.2f;
+    [SerializeField] private float distanciaEscape = 59.1f;
     [SerializeField] public Mundo mundo;
     [HideInInspector] private showPanel panel;
 
@@ -21,6 +22,7 @@ public class Comerciante : MonoBehaviour
 
     [SerializeField] private Isla islaDestino;
     [SerializeField] private Pirata huyendoPirata;
+    [SerializeField] private Armada salvadoPor;
     private bool esperando;
 
     //Recursos
@@ -154,13 +156,21 @@ public class Comerciante : MonoBehaviour
         if (movimiento.updateMovement(islaDestino.getActualPos()))
         {
             islaDestino.avisarBarcoEsperando(this);
+            if (salvadoPor != null)
+            {
+                salvadoPor.dejarDeAcompanar();
+            }
             cambiarEstado(EstadoComerciante.ESPERAR_COMERCIO);
         }
     }
 
     private void updateHuir()
     {
-        movimiento.huir(huyendoPirata.getMovimiento().getPos());
+        if (movimiento.huir(huyendoPirata.getMovimiento().getPos()) > distanciaEscape)
+        {
+            huyendoPirata.cambiarEstado(Pirata.EstadoPirata.ESPERAR_BARCO);
+            cambiarEstado(EstadoComerciante.VIAJANDO_OTRA_LISTA);
+        }
     }
 
     private void updateAtracado()
@@ -179,9 +189,26 @@ public class Comerciante : MonoBehaviour
     }
     public void avisarEsPerseguido(Pirata pirata)
     {
-        ayuda = true;
         huyendoPirata = pirata;
         cambiarEstado(EstadoComerciante.HUIR);
         MonoBehaviour.print("El comerciante: " + transform.name + " esta siendo perseguido.");
     }
+
+    public void avisarEsSalvado(Armada armada)
+    {
+        cambiarEstado(EstadoComerciante.VIAJANDO_OTRA_LISTA);
+        salvadoPor = armada;
+    }
+    public Pirata perseguidoPor()
+    {
+        if (estadoActual == EstadoComerciante.HUIR)
+        {
+            return huyendoPirata;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
 }
