@@ -11,6 +11,7 @@ public class Comerciante : MonoBehaviour
     [HideInInspector] private Movimiento movimiento;
     [SerializeField] private float extraEndDistance = 8.2f;
     [SerializeField] public Mundo mundo;
+    [HideInInspector] private showPanel panel;
 
     //FSM
     private delegate void StateUpdate();
@@ -30,10 +31,11 @@ public class Comerciante : MonoBehaviour
     [SerializeField] private int comida = 0;
     [HideInInspector] private CanvasRecursos canvasRecursos;
     public bool ayuda = false;
-    
+
 
     void Start()
     {
+        panel = GameObject.Find("/selectShipResources").transform.GetChild(0).GetComponent<showPanel>();
         cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
         islaDestino = mundo.islas[0];
         IAstarAI agent = transform.GetComponent<IAstarAI>();
@@ -41,6 +43,15 @@ public class Comerciante : MonoBehaviour
         Canvas canvas = transform.GetChild(0).GetComponent<Canvas>();
         canvasRecursos = new CanvasRecursos(canvas, oro, madera, tabaco, comida);
         esperando = true;
+    }
+
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            MonoBehaviour.print("click" + gameObject.name);
+            panel.setComerciante(this);
+        }
     }
 
     void Update()
@@ -129,14 +140,14 @@ public class Comerciante : MonoBehaviour
     private void updateComerciando()
     {
         islaDestino.comerciarConBarco(this);
-        MonoBehaviour.print("El comerciante: "+transform.name+" ha comerciado con la isla: "+islaDestino.name+".");
+        MonoBehaviour.print("El comerciante: " + transform.name + " ha comerciado con la isla: " + islaDestino.name + ".");
         cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
     }
     private void updateBuscando()
     {
         islaDestino = mundo.obtenerNuevoDestino(this, islaDestino);
         cambiarEstado(EstadoComerciante.VIAJANDO_OTRA_LISTA);
-        MonoBehaviour.print("El comerciante: "+transform.name+" se dirige a su nuevo destino: "+islaDestino.name+".");
+        MonoBehaviour.print("El comerciante: " + transform.name + " se dirige a su nuevo destino: " + islaDestino.name + ".");
     }
     private void updateViajando()
     {
@@ -155,7 +166,7 @@ public class Comerciante : MonoBehaviour
     private void updateAtracado()
     {
         MonoBehaviour.print("comerciante destruido");
-        mundo.addRespawn(prefab,transform.position,transform.rotation, 2);
+        mundo.addRespawn(prefab, transform.position, transform.rotation, 2);
         Destroy(gameObject);
     }
 
@@ -164,16 +175,13 @@ public class Comerciante : MonoBehaviour
     public void atracar()
     {
         cambiarEstado(EstadoComerciante.ATRACADO);
-        MonoBehaviour.print("El comerciante: "+transform.name+" ha sido atacado.");
+        MonoBehaviour.print("El comerciante: " + transform.name + " ha sido atacado.");
     }
     public void avisarEsPerseguido(Pirata pirata)
     {
         ayuda = true;
         huyendoPirata = pirata;
         cambiarEstado(EstadoComerciante.HUIR);
-        MonoBehaviour.print("El comerciante: "+transform.name+" esta siendo perseguido.");
+        MonoBehaviour.print("El comerciante: " + transform.name + " esta siendo perseguido.");
     }
-
-   
-
 }

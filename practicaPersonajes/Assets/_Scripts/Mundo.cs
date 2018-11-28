@@ -43,7 +43,7 @@ public class Mundo : MonoBehaviour
     IEnumerator respawn(Transform element, Vector3 elementPosition, Quaternion elementRotation, int espera)
     {
         yield return new WaitForSeconds(espera);
-        
+
         Transform aux = Instantiate(element, elementPosition, elementRotation);
         if (aux != null)
         {

@@ -7,7 +7,7 @@ public class Isla : MonoBehaviour
 {
     [HideInInspector] private Vector2 actualPos;
     public Mundo mundo;
-	private float tiempo = 0;
+    private float tiempo = 0;
 
     public enum tipos { MADERA, TABACO, COMIDA, COMERCIO };
     public tipos tipoActual;
@@ -32,9 +32,9 @@ public class Isla : MonoBehaviour
     [SerializeField] private int precioComida;
     [SerializeField] private int precioTabaco;
 
-	[SerializeField] private int gastoMadera;
-	[SerializeField] private int gastoComida;
-	[SerializeField] private int gastoTabaco;
+    [SerializeField] private int gastoMadera;
+    [SerializeField] private int gastoComida;
+    [SerializeField] private int gastoTabaco;
 
     private int necesidadEstandar = 400;
     private int necesidadAlta = 200;
@@ -51,13 +51,13 @@ public class Isla : MonoBehaviour
         float felicidad, beneficios = 0;
         float distancia = comerciante_.getMovimiento().distance(actualPos);
 
-		if (comerciante_.getMadera () != 0 || comerciante_.getTabaco () != 0 || comerciante_.getComida () != 0)
-			beneficios = comerciante_.getMadera () * precioMadera + comerciante_.getTabaco () * precioTabaco + comerciante_.getComida () * precioComida;
-		else 
-		{
-			if (tipoActual != tipos.COMERCIO)
-				beneficios = 1000000;
-		}
+        if (comerciante_.getMadera() != 0 || comerciante_.getTabaco() != 0 || comerciante_.getComida() != 0)
+            beneficios = comerciante_.getMadera() * precioMadera + comerciante_.getTabaco() * precioTabaco + comerciante_.getComida() * precioComida;
+        else
+        {
+            if (tipoActual != tipos.COMERCIO)
+                beneficios = 1000000;
+        }
         felicidad = (40 * distancia + 60 * beneficios) / 100;
         return Mathf.CeilToInt(felicidad);
     }
@@ -66,28 +66,28 @@ public class Isla : MonoBehaviour
     {
         //wait 3 s
         comerciante.setEspera(true);
-		StartCoroutine(esperar(3, comerciante));
+        StartCoroutine(esperar(3, comerciante));
     }
 
-	public void obtenerRecursos(Comerciante comerciante)
-	{
-		switch (tipoActual)
-		{
-		case tipos.COMIDA:
-			comida -= 500;
-			comerciante.setComida (comerciante.getComida() + 500);
-			break;
-		case tipos.TABACO:
-			tabaco -= 500;
-			comerciante.setTabaco (comerciante.getTabaco() + 500);
-			break;
-		case tipos.MADERA:
-			madera -= 500;
-			comerciante.setMadera (comerciante.getMadera () + 500);
-			break;
-		}
+    public void obtenerRecursos(Comerciante comerciante)
+    {
+        switch (tipoActual)
+        {
+            case tipos.COMIDA:
+                comida -= 500;
+                comerciante.setComida(comerciante.getComida() + 500);
+                break;
+            case tipos.TABACO:
+                tabaco -= 500;
+                comerciante.setTabaco(comerciante.getTabaco() + 500);
+                break;
+            case tipos.MADERA:
+                madera -= 500;
+                comerciante.setMadera(comerciante.getMadera() + 500);
+                break;
+        }
 
-	}
+    }
 
     public void comerciarConBarco(Comerciante comerciante)
     {
@@ -127,12 +127,12 @@ public class Isla : MonoBehaviour
     {
         if (islaComercio)
         {
-			if (this.tipoActual != tipos.COMERCIO)
-			{
-				this.gameObject.GetComponent<SpriteRenderer> ().sprite = islaCom;
-				reasignarIsla ();
-			}
-			UpdateComercio ();
+            if (this.tipoActual != tipos.COMERCIO)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = islaCom;
+                reasignarIsla();
+            }
+            UpdateComercio();
         }
         else
         {
@@ -142,7 +142,7 @@ public class Isla : MonoBehaviour
             {
                 asignarMaterial(-1);
             }
-			UpdateRecursos ();
+            UpdateRecursos();
         }
     }
 
@@ -171,13 +171,13 @@ public class Isla : MonoBehaviour
 
 
 
-	public void asignarMaterial(int material)
+    public void asignarMaterial(int material)
     {
-		if(material == -1)
-        	tipoIslaActual = Random.Range(0, 3); 
-		else
-			tipoIslaActual = material;
-		
+        if (material == -1)
+            tipoIslaActual = Random.Range(0, 3);
+        else
+            tipoIslaActual = material;
+
 
         switch (tipoIslaActual)
         {
@@ -213,88 +213,97 @@ public class Isla : MonoBehaviour
         madera = 400;
         tabaco = 400;
         comida = 400;
-		gastoComida = 20;
-		gastoMadera = 20;
-		gastoTabaco = 20;
+        gastoComida = 20;
+        gastoMadera = 20;
+        gastoTabaco = 20;
         tipoActual = tipos.COMERCIO;
     }
 
 
-	private void UpdateComercio()
-	{
-		
-		if (tiempo > 1) 
-		{
-			oro += 100;
+    private void UpdateComercio()
+    {
 
-			if(comida - gastoComida >= 0)
-				comida -= gastoComida;
-			if(tabaco - gastoTabaco >= 0)
-				tabaco -= gastoTabaco;
-			if(madera - gastoMadera >= 0)
-				madera -= gastoMadera;
-			
-			//reasignar precio comida en funcion de la necesida
-			if (comida < necesidadAlta) {
-				precioComida = valorAlto;
-			} else if (comida <= necesidadEstandar)
-				precioComida = valorEstandar;
-			else {
-				precioComida = valorBajo;
-			}
-			//reasignar precio tabaco en funcion de la necesida
-			if (tabaco < necesidadAlta) {
-				precioTabaco = valorAlto;
-			} else if (tabaco <= necesidadEstandar)
-				precioTabaco = valorEstandar;
-			else {
-				precioTabaco = valorBajo;
-			}
-			//reasignar precio madera en funcion de la necesidad
-			if (madera < necesidadAlta) {
-				precioMadera = valorAlto;
-			} else if (madera <= necesidadEstandar)
-				precioMadera = valorEstandar;
-			else {
-				precioMadera = valorBajo;
-			}
-			tiempo = 0;
-		}
+        if (tiempo > 1)
+        {
+            oro += 100;
+
+            if (comida - gastoComida >= 0)
+                comida -= gastoComida;
+            if (tabaco - gastoTabaco >= 0)
+                tabaco -= gastoTabaco;
+            if (madera - gastoMadera >= 0)
+                madera -= gastoMadera;
+
+            //reasignar precio comida en funcion de la necesida
+            if (comida < necesidadAlta)
+            {
+                precioComida = valorAlto;
+            }
+            else if (comida <= necesidadEstandar)
+                precioComida = valorEstandar;
+            else
+            {
+                precioComida = valorBajo;
+            }
+            //reasignar precio tabaco en funcion de la necesida
+            if (tabaco < necesidadAlta)
+            {
+                precioTabaco = valorAlto;
+            }
+            else if (tabaco <= necesidadEstandar)
+                precioTabaco = valorEstandar;
+            else
+            {
+                precioTabaco = valorBajo;
+            }
+            //reasignar precio madera en funcion de la necesidad
+            if (madera < necesidadAlta)
+            {
+                precioMadera = valorAlto;
+            }
+            else if (madera <= necesidadEstandar)
+                precioMadera = valorEstandar;
+            else
+            {
+                precioMadera = valorBajo;
+            }
+            tiempo = 0;
+        }
 
 
-		tiempo += UnityEngine.Time.deltaTime;
-	}
+        tiempo += UnityEngine.Time.deltaTime;
+    }
 
 
-	private void UpdateRecursos()
-	{
-		if (tiempo > 1) 
-		{
-			switch (tipoActual) 
-			{
-			case tipos.COMIDA:
-				if (comida < 3000) 
-				{
-					comida += 100;
-				}
-				break;
-			case tipos.MADERA:
-				if (madera < 3000)
-				{
-					madera += 100;
-				}
-				break;
-			case tipos.TABACO:
-				if (tabaco < 3000) 
-				{
-					tabaco += 100;
-				}
-				break;
-			}
+    private void UpdateRecursos()
+    {
+        if (tiempo > 1)
+        {
+            switch (tipoActual)
+            {
+                case tipos.COMIDA:
+                    if (comida < 3000)
+                    {
+                        comida += 100;
+                    }
+                    break;
+                case tipos.MADERA:
+                    if (madera < 3000)
+                    {
+                        madera += 100;
+                    }
+                    break;
+                case tipos.TABACO:
+                    if (tabaco < 3000)
+                    {
+                        tabaco += 100;
+                    }
+                    break;
+            }
 
-			tiempo = 0;
-		}
+            tiempo = 0;
+        }
 
-		tiempo += UnityEngine.Time.deltaTime;
-	}
+        tiempo += UnityEngine.Time.deltaTime;
+    }
 }

@@ -1,24 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class showPanel : MonoBehaviour {
-    
-    public Comerciante comerciante;
+public class showPanel : MonoBehaviour
+{
 
-    // Use this for initialization
-    void Start () {
+    [SerializeField] private Comerciante comerciante;
+    [HideInInspector] private Text nameText;
+    [HideInInspector] private Text oroText;
+    [HideInInspector] private Text maderaText;
+    [HideInInspector] private Text comidaText;
+    [HideInInspector] private Text tabacoText;
+    void Start()
+    {
         gameObject.SetActive(false);
+        nameText = gameObject.transform.GetChild(0).GetComponent<Text>();
+        oroText = gameObject.transform.GetChild(2).GetComponent<Text>();
+        maderaText = gameObject.transform.GetChild(4).GetComponent<Text>();
+        comidaText = gameObject.transform.GetChild(6).GetComponent<Text>();
+        tabacoText = gameObject.transform.GetChild(8).GetComponent<Text>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    public void setComerciante(Comerciante newComerciante)
+    {
+        if (comerciante == newComerciante)
+        {
+            gameObject.SetActive(!gameObject.active);
+        }
+        else
+        {
+            nameText.text = newComerciante.gameObject.name;
+            gameObject.SetActive(true);
+        }
+        comerciante = newComerciante;
+    }
+
+
+    // Update is called once per frame
+    void Update()
+    {
         if (comerciante != null)
         {
-            gameObject.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = comerciante.getOro().ToString();
-            gameObject.transform.GetChild(4).GetComponent<UnityEngine.UI.Text>().text = comerciante.getMadera().ToString();
-            gameObject.transform.GetChild(6).GetComponent<UnityEngine.UI.Text>().text = comerciante.getComida().ToString();
-            gameObject.transform.GetChild(8).GetComponent<UnityEngine.UI.Text>().text = comerciante.getTabaco().ToString();
+            oroText.text = comerciante.getOro().ToString();
+            maderaText.text = comerciante.getMadera().ToString();
+            comidaText.text = comerciante.getComida().ToString();
+            tabacoText.text = comerciante.getTabaco().ToString();
         }
     }
 }

@@ -13,14 +13,14 @@ public class Pirata : MonoBehaviour
 
     [SerializeField] private float EndDistance = 15f;
     [SerializeField] private float huyendoDistance = 15f;
-    
+
     [SerializeField] private float Patroll = 5f;
     [SerializeField] private float patrollRadius = 22f;
 
     public enum EstadoPirata { ESPERAR_BARCO, ATACAR, HUIR, CONSEGUIR_BOTIN, DESTRUIDO };
     [SerializeField] private EstadoPirata estadoActual;
 
-	[SerializeField] private Comerciante target;
+    [SerializeField] private Comerciante target;
     [SerializeField] private Armada huyendoDe;
     [SerializeField] private List<GameObject> listaColisiones;
     [SerializeField] private GameObject collisionObject;
@@ -78,13 +78,13 @@ public class Pirata : MonoBehaviour
     private void updateDestruido()
     {
         MonoBehaviour.print("PIRATA destruido");
-        mundo.addRespawn(prefab,transform.position,transform.rotation, 4);
+        mundo.addRespawn(prefab, transform.position, transform.rotation, 4);
         Destroy(gameObject);
     }
     private void updateAtacando()
     {
         atacando = true;
-        if(movimiento.updateMovement (target.getMovimiento().getPos()))
+        if (movimiento.updateMovement(target.getMovimiento().getPos()))
         {
             collisionObject = null;
             cambiarEstado(EstadoPirata.CONSEGUIR_BOTIN);
@@ -92,7 +92,8 @@ public class Pirata : MonoBehaviour
     }
     private void updateHuyendo()
     {
-        if(movimiento.huir(huyendoDe.getMovimiento().getPos())<huyendoDistance){
+        if (movimiento.huir(huyendoDe.getMovimiento().getPos()) < huyendoDistance)
+        {
             collisionObject = null;
             cambiarEstado(EstadoPirata.ESPERAR_BARCO);
             huyendoDe.cancelarPersecucion();
@@ -102,44 +103,46 @@ public class Pirata : MonoBehaviour
     private void updateEsperandoBarco()
     {
         atacando = false;
-        if ( collisionObject != null && collisionObject.tag == "Comerciante")
+        if (collisionObject != null && collisionObject.tag == "Comerciante")
         {
             MonoBehaviour.print("analizado collison object");
             target = collisionObject.GetComponent<Comerciante>();
             target.avisarEsPerseguido(this);
             cambiarEstado(EstadoPirata.ATACAR);
         }
-        else{
+        else
+        {
             movimiento.patrullar();
         }
     }
     private void updateConsiguiendoBotin()
     {
-        MonoBehaviour.print("El pirata: "+transform.name+" esta consiguiendo su botin.");
+        MonoBehaviour.print("El pirata: " + transform.name + " esta consiguiendo su botin.");
         cambiarEstado(EstadoPirata.ESPERAR_BARCO);
         target.atracar();
-        
+
     }
-    
+
 
     /*COLISIONES*/
-	void OnTriggerEnter2D(Collider2D coll)
-	{
-        if( coll.transform != null)
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+        if (coll.transform != null)
         {
             MonoBehaviour.print("collision detectada por PIRATA no nula");
             listaColisiones.Add(coll.transform.gameObject);
         }
         MonoBehaviour.print("collision detectada por PIRATA");
-	}
+    }
 
     //COMUNICACION
-    public void detectadoPorArmada(Armada armada){
+    public void detectadoPorArmada(Armada armada)
+    {
         atacando = false;
         huyendoDe = armada;
         cambiarEstado(EstadoPirata.HUIR);
-        MonoBehaviour.print("El pirata: "+transform.name+" ha sido detectado por la armada.");
-       
+        MonoBehaviour.print("El pirata: " + transform.name + " ha sido detectado por la armada.");
+
     }
 
     public void barcoDestruido()

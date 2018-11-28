@@ -29,7 +29,7 @@ public class Armada : MonoBehaviour
     //FSM
     private delegate void StateUpdate();
     private StateUpdate stateUpdate;
-    public enum EstadoArmada { PATRULLANDO, AYUDA, PERSIGUE,ATRAPAR, ACOMPANA_COMERCIANTE };
+    public enum EstadoArmada { PATRULLANDO, AYUDA, PERSIGUE, ATRAPAR, ACOMPANA_COMERCIANTE };
     [SerializeField]
     private EstadoArmada estadoActual;
     void Start()
@@ -114,27 +114,23 @@ public class Armada : MonoBehaviour
 
             cambiarEstado(EstadoArmada.ATRAPAR);
         }
-        
-
-
     }
     private void updateAcompanando()
     {
 
-       /* if (collisionObject != null && collisionObject.tag == "Comerciante")
-        {
-            Llamada = collisionObject.GetComponent<Comerciante>();
+        /* if (collisionObject != null && collisionObject.tag == "Comerciante")
+         {
+             Llamada = collisionObject.GetComponent<Comerciante>();
 
-        }
-        */
+         }
+         */
         if (movimiento.updateMovement(Llamada.getMovimiento().getPos()))
         {
-            
+
             collisionObject = null;
 
             cambiarEstado(EstadoArmada.PATRULLANDO);
         }
-
     }
 
     private void updateAtraparPirata()
@@ -157,7 +153,7 @@ public class Armada : MonoBehaviour
 
     public void cancelarPersecucion()
     {
-       
+
         collisionObject = null;
         Persiguiendo = null;
         if (collisionObject != null && collisionObject.tag == "Comerciante")
@@ -166,7 +162,7 @@ public class Armada : MonoBehaviour
             MonoBehaviour.print("CANCELADA");
             cambiarEstado(EstadoArmada.ACOMPANA_COMERCIANTE);
         }
-        
+
     }
 
 }
