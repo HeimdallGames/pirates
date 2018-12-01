@@ -104,8 +104,15 @@ public class Pirata : MonoBehaviour
         {
             MonoBehaviour.print("analizado collison object");
             target = collisionObject.GetComponent<Comerciante>();
-            target.avisarEsPerseguido(this);
-            cambiarEstado(EstadoPirata.ATACAR);
+            if (!target.desvalijado)
+            {
+                target.avisarEsPerseguido(this);
+                cambiarEstado(EstadoPirata.ATACAR);
+            }
+            else
+            {
+                movimiento.patrullar();
+            }
         }
         else
         {
@@ -144,7 +151,5 @@ public class Pirata : MonoBehaviour
     public void barcoDestruido()
     {
         cambiarEstado(EstadoPirata.DESTRUIDO);
-
-
     }
 }
