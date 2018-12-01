@@ -920,6 +920,38 @@ Prefab:
       propertyPath: m_RootOrder
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 114610698402567670, guid: 0b1cfef86203fd642ab4a8e67674f0bc,
+        type: 2}
+      propertyPath: bg1
+      value: 
+      objectReference: {fileID: 21300000, guid: df0996023b77185479fd9d00d4c95bbf,
+        type: 3}
+    - target: {fileID: 114610698402567670, guid: 0b1cfef86203fd642ab4a8e67674f0bc,
+        type: 2}
+      propertyPath: bg2
+      value: 
+      objectReference: {fileID: 21300000, guid: a71ed0eae3bf34e41b8df0886e42c945,
+        type: 3}
+    - target: {fileID: 114610698402567670, guid: 0b1cfef86203fd642ab4a8e67674f0bc,
+        type: 2}
+      propertyPath: bg3
+      value: 
+      objectReference: {fileID: 21300000, guid: c8cd7394cccb70b4cb3a008fa2158dc2,
+        type: 3}
+    - target: {fileID: 212689076826871452, guid: 0b1cfef86203fd642ab4a8e67674f0bc,
+        type: 2}
+      propertyPath: m_DrawMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4518208253646046, guid: 0b1cfef86203fd642ab4a8e67674f0bc, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 13.999999
+      objectReference: {fileID: 0}
+    - target: {fileID: 212689076826871452, guid: 0b1cfef86203fd642ab4a8e67674f0bc,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0b1cfef86203fd642ab4a8e67674f0bc, type: 2}
   m_IsPrefabParent: 0
