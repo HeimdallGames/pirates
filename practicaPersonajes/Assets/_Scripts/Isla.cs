@@ -86,7 +86,7 @@ public class Isla : MonoBehaviour
                 comerciante.setMadera(comerciante.getMadera() + 500);
                 break;
         }
-
+        comerciante.desvalijado = false;
     }
 
     public void comerciarConBarco(Comerciante comerciante)

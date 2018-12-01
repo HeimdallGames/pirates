@@ -31,6 +31,7 @@ public class Comerciante : MonoBehaviour
     [SerializeField] private int madera = 0;
     [SerializeField] private int tabaco = 0;
     [SerializeField] private int comida = 0;
+    [SerializeField] public bool desvalijado = true;
     [HideInInspector] private CanvasRecursos canvasRecursos;
     public bool ayuda = false;
 
@@ -131,6 +132,7 @@ public class Comerciante : MonoBehaviour
     {
         this.esperando = estado;
     }
+
     private void updateEsperando()
     {
         if (esperando == false)
@@ -175,9 +177,12 @@ public class Comerciante : MonoBehaviour
 
     private void updateAtracado()
     {
-        MonoBehaviour.print("comerciante destruido");
-        mundo.addRespawn(prefab, transform.position, transform.rotation, 2);
-        Destroy(gameObject);
+        setComida(0);
+        setTabaco(0);
+        setOro(0);
+        setMadera(0);
+        MonoBehaviour.print("comerciante atracado");
+        cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
     }
 
 
