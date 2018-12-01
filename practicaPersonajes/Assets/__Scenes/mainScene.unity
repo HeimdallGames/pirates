@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -118,6 +118,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
     type: 2}
   m_PrefabInternal: {fileID: 1347921153}
+  m_Script: {fileID: 11500000, guid: 31916da82216e6c47a95764645bb8992, type: 3}
+--- !u!114 &245218668 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
+    type: 2}
+  m_PrefabInternal: {fileID: 1171686725}
   m_Script: {fileID: 11500000, guid: 31916da82216e6c47a95764645bb8992, type: 3}
 --- !u!4 &289950339 stripped
 Transform:
@@ -223,6 +229,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4799510670854896, guid: cb57bed195730e547ab3aae95f9f6b57,
     type: 2}
   m_PrefabInternal: {fileID: 1224191922}
+--- !u!114 &484160509 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
+    type: 2}
+  m_PrefabInternal: {fileID: 1883599272}
+  m_Script: {fileID: 11500000, guid: 31916da82216e6c47a95764645bb8992, type: 3}
 --- !u!1 &534669902
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +355,11 @@ Prefab:
     - target: {fileID: 1041580731294036, guid: cb57bed195730e547ab3aae95f9f6b57, type: 2}
       propertyPath: m_Name
       value: isla (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
+        type: 2}
+      propertyPath: islaComercio
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb57bed195730e547ab3aae95f9f6b57, type: 2}
@@ -568,6 +585,11 @@ Prefab:
       propertyPath: m_Size.y
       value: 7.292286
       objectReference: {fileID: 0}
+    - target: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
+        type: 2}
+      propertyPath: islaComercio
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb57bed195730e547ab3aae95f9f6b57, type: 2}
   m_IsPrefabParent: 0
@@ -578,6 +600,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114850114234210864, guid: 340bd1d5394e9eb419fa72af56a8850d,
+        type: 2}
+      propertyPath: islas.Array.size
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4907095804448992, guid: 340bd1d5394e9eb419fa72af56a8850d, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -640,6 +667,26 @@ Prefab:
       propertyPath: logPathResults
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114850114234210864, guid: 340bd1d5394e9eb419fa72af56a8850d,
+        type: 2}
+      propertyPath: islas.Array.data[4]
+      value: 
+      objectReference: {fileID: 1098811791}
+    - target: {fileID: 114850114234210864, guid: 340bd1d5394e9eb419fa72af56a8850d,
+        type: 2}
+      propertyPath: islas.Array.data[5]
+      value: 
+      objectReference: {fileID: 484160509}
+    - target: {fileID: 114850114234210864, guid: 340bd1d5394e9eb419fa72af56a8850d,
+        type: 2}
+      propertyPath: islas.Array.data[6]
+      value: 
+      objectReference: {fileID: 245218668}
+    - target: {fileID: 114850114234210864, guid: 340bd1d5394e9eb419fa72af56a8850d,
+        type: 2}
+      propertyPath: islas.Array.data[7]
+      value: 
+      objectReference: {fileID: 1803559005}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 340bd1d5394e9eb419fa72af56a8850d, type: 2}
   m_IsPrefabParent: 0
@@ -653,6 +700,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4799510670854896, guid: cb57bed195730e547ab3aae95f9f6b57,
     type: 2}
   m_PrefabInternal: {fileID: 1379550452}
+--- !u!114 &1098811791 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
+    type: 2}
+  m_PrefabInternal: {fileID: 1379550452}
+  m_Script: {fileID: 11500000, guid: 31916da82216e6c47a95764645bb8992, type: 3}
 --- !u!1001 &1120571495
 Prefab:
   m_ObjectHideFlags: 0
@@ -810,6 +863,11 @@ Prefab:
       propertyPath: mundo
       value: 
       objectReference: {fileID: 1617200413}
+    - target: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
+        type: 2}
+      propertyPath: islaComercio
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb57bed195730e547ab3aae95f9f6b57, type: 2}
   m_IsPrefabParent: 0
@@ -984,6 +1042,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
     type: 2}
   m_PrefabInternal: {fileID: 1224191922}
+  m_Script: {fileID: 11500000, guid: 31916da82216e6c47a95764645bb8992, type: 3}
+--- !u!114 &1803559005 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
+    type: 2}
+  m_PrefabInternal: {fileID: 973601123}
   m_Script: {fileID: 11500000, guid: 31916da82216e6c47a95764645bb8992, type: 3}
 --- !u!1001 &1883599272
 Prefab:
