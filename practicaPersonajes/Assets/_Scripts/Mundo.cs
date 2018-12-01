@@ -12,26 +12,28 @@ public class Mundo : MonoBehaviour
     [SerializeField] private List<int> respawnListEsperas;
 
 
-    public Isla obtenerNuevoDestino(Comerciante comerciante_, Isla ultimaLista)
+    public Isla obtenerNuevoDestino(Comerciante comerciante_, Isla ultimaLista) 
     {
-        islas.Sort((x, y) => (x.posibleFelicidad(comerciante_)).CompareTo(y.posibleFelicidad(comerciante_)));
-        int randomIsland = Random.Range(0, 2);
-        Isla returnIsla = islas[randomIsland];
-        if (ultimaLista == returnIsla)
-        {
-            if (randomIsland == 0)
+        
+            islas.Sort((x, y) => (x.posibleFelicidad(comerciante_)).CompareTo(y.posibleFelicidad(comerciante_)));
+            int randomIsland = Random.Range(0, 1);
+            Isla returnIsla = islas[randomIsland];
+            if (ultimaLista == returnIsla)
             {
-                return islas[Random.Range(1, 2)];
+                if (randomIsland == 0)
+                {
+                    return islas[Random.Range(1, 2)];
+                }
+                else
+                {
+                    return islas[0];
+                }
             }
             else
             {
-                return islas[0];
+                return returnIsla;
             }
-        }
-        else
-        {
-            return returnIsla;
-        }
+        
     }
     public void addRespawn(Transform element, Vector3 pos, Quaternion rot, int espera)
     {

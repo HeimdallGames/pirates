@@ -59,6 +59,7 @@ public class Isla : MonoBehaviour
                 beneficios = 1000000;
         }
         felicidad = (40 * distancia + 60 * beneficios) / 100;
+        //felicidad = (beneficios) / 100;
         return Mathf.CeilToInt(felicidad);
     }
 
