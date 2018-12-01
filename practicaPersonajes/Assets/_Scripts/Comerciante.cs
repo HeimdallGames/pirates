@@ -44,7 +44,8 @@ public class Comerciante : MonoBehaviour
         Canvas canvas = transform.GetChild(0).GetComponent<Canvas>();
         canvasRecursos = new CanvasRecursos(canvas, oro, madera, tabaco, comida);
         esperando = true;
-        cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
+        islaDestino = mundo.islas[Random.Range(0,mundo.islas.Count)];
+        cambiarEstado(EstadoComerciante.VIAJANDO_OTRA_LISTA);
     }
 
     void OnMouseOver()

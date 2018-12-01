@@ -121,7 +121,7 @@ MonoBehaviour:
   repathRate: 50
   canSearch: 1
   canMove: 1
-  speed: 6
+  speed: 8
   orientation: 1
   enableRotation: 1
   rotationSpeed: 30

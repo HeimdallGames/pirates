@@ -76,11 +76,11 @@ CircleCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 50
+  m_Radius: 30
 --- !u!61 &61000292335213666
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -118,11 +118,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mundo: {fileID: 0}
-  extraEndDistance: 7.2
+  extraEndDistance: 8.5
   extraPatroll: 7.2
   patrollRadius: 50
-  Llamada: {fileID: 0}
-  Persiguiendo: {fileID: 0}
+  llamada: {fileID: 0}
+  persiguiendo: {fileID: 0}
   listaColisiones: []
   collisionObject: {fileID: 0}
   estadoActual: 0
@@ -168,7 +168,7 @@ MonoBehaviour:
   repathRate: 50
   canSearch: 1
   canMove: 1
-  speed: 13
+  speed: 11
   orientation: 1
   enableRotation: 1
   rotationSpeed: 30
