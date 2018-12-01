@@ -25,7 +25,7 @@ public class Isla : MonoBehaviour
     [SerializeField] private int comida = 400;
 
     private int valorEstandar = 10;
-    private int valorAlto = 15;
+    private int valorAlto = 25;
     private int valorBajo = 5;
 
     [SerializeField] private int precioMadera;
@@ -52,14 +52,19 @@ public class Isla : MonoBehaviour
         float distancia = comerciante_.getMovimiento().distance(actualPos);
 
         if (comerciante_.getMadera() != 0 || comerciante_.getTabaco() != 0 || comerciante_.getComida() != 0)
-            beneficios = comerciante_.getMadera() * precioMadera + comerciante_.getTabaco() * precioTabaco + comerciante_.getComida() * precioComida;
+        {
+            if(tipoActual == tipos.COMERCIO)
+                beneficios = comerciante_.getMadera() * precioMadera + comerciante_.getTabaco() * precioTabaco + comerciante_.getComida() * precioComida;
+        }
+           
         else
         {
             if (tipoActual != tipos.COMERCIO)
                 beneficios = 1000000;
         }
-        felicidad = (40 * distancia + 60 * beneficios) / 100;
+        felicidad = ((60/distancia) + 40 * beneficios) / 100;
         //felicidad = (beneficios) / 100;
+        Debug.Log("FELICIDAD" + " " + transform.name + " " + comerciante_.transform.name+ " " +  felicidad + " " + tipoActual);
         return Mathf.CeilToInt(felicidad);
     }
 
@@ -156,8 +161,9 @@ public class Isla : MonoBehaviour
         }
     }
 
-    void Start()
+    void Awake() 
     {
+        Debug.Log("AGUAQUE");
         this.gameObject.GetComponent<SpriteRenderer>().sprite = null;
 
         if (islaComercio)
@@ -176,7 +182,9 @@ public class Isla : MonoBehaviour
         precioComida = valorEstandar;
         precioTabaco = valorEstandar;
 
-        asignarMaterial(-1);
+        
+             Debug.Log("AGUAQUE FIN");
+
     }
 
 

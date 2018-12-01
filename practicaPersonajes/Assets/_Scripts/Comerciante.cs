@@ -39,13 +39,12 @@ public class Comerciante : MonoBehaviour
     void Start()
     {
         panel = GameObject.Find("/selectShipResources").transform.GetChild(0).GetComponent<showPanel>();
-        cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
-        islaDestino = mundo.islas[0];
         IAstarAI agent = transform.GetComponent<IAstarAI>();
         movimiento = new Movimiento(agent, extraEndDistance);
         Canvas canvas = transform.GetChild(0).GetComponent<Canvas>();
         canvasRecursos = new CanvasRecursos(canvas, oro, madera, tabaco, comida);
         esperando = true;
+        cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
     }
 
     void OnMouseOver()

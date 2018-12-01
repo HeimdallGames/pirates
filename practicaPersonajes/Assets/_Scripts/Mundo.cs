@@ -14,23 +14,34 @@ public class Mundo : MonoBehaviour
 
     public Isla obtenerNuevoDestino(Comerciante comerciante_, Isla ultimaLista) 
     {
+        List<Isla> islasClon = new List<Isla> (islas);
         
-            islas.Sort((x, y) => (x.posibleFelicidad(comerciante_)).CompareTo(y.posibleFelicidad(comerciante_)));
-            int randomIsland = Random.Range(0, 1);
-            Isla returnIsla = islas[randomIsland];
+        islasClon.Sort((y,x ) => (x.posibleFelicidad(comerciante_)).CompareTo(y.posibleFelicidad(comerciante_)));
+
+        foreach (Isla isla in islasClon)
+        {
+            Debug.Log("Final" + " " + isla.transform.name);
+        }
+        int randomIsland = Random.Range(0, 1);
+            Isla returnIsla = islasClon[randomIsland];
+            
+           
             if (ultimaLista == returnIsla)
+
             {
                 if (randomIsland == 0)
                 {
-                    return islas[Random.Range(1, 2)];
+                return islasClon[1];                
+               
                 }
                 else
                 {
-                    return islas[0];
+                    return islasClon[0];
                 }
             }
             else
             {
+
                 return returnIsla;
             }
         
