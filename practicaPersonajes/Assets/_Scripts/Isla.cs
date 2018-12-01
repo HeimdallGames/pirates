@@ -62,6 +62,15 @@ public class Isla : MonoBehaviour
         return Mathf.CeilToInt(felicidad);
     }
 
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            MonoBehaviour.print("click" + gameObject.name);
+            islaComercio = !islaComercio;
+        }
+    }
+
     public void avisarBarcoEsperando(Comerciante comerciante)
     {
         //wait 3 s
