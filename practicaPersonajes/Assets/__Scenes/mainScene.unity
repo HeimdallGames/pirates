@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -173,7 +173,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4809047017268592, guid: 40e8ab4659a1ad249a4459bad97b4948, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 114997764854670298, guid: 40e8ab4659a1ad249a4459bad97b4948,
         type: 2}
@@ -185,6 +185,10 @@ Prefab:
       propertyPath: mundo
       value: 
       objectReference: {fileID: 1617200413}
+    - target: {fileID: 1197821721392422, guid: 40e8ab4659a1ad249a4459bad97b4948, type: 2}
+      propertyPath: m_Name
+      value: Armada 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 40e8ab4659a1ad249a4459bad97b4948, type: 2}
   m_IsPrefabParent: 0
@@ -365,7 +369,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4686323897931792, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114609564392810000, guid: a9140b6509c7b2141bcc994cf8e631a3,
         type: 2}
@@ -395,7 +399,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1672789712550830, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
       propertyPath: m_Name
-      value: comerciante (1)
+      value: Comerciante 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
@@ -493,11 +497,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4545488382102858, guid: 625000b06e5ccb5438cb2b0c6995a6c4, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1874513242051252, guid: 625000b06e5ccb5438cb2b0c6995a6c4, type: 2}
       propertyPath: m_Name
-      value: pirata (1)
+      value: Pirata 2
       objectReference: {fileID: 0}
     - target: {fileID: 114876739117254386, guid: 625000b06e5ccb5438cb2b0c6995a6c4,
         type: 2}
@@ -558,7 +562,7 @@ Prefab:
     - target: {fileID: 224353401092263038, guid: ca910e968aec33c4e9729136f31a84a9,
         type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224353401092263038, guid: ca910e968aec33c4e9729136f31a84a9,
         type: 2}
@@ -618,12 +622,32 @@ Prefab:
     - target: {fileID: 224824918464960348, guid: ca910e968aec33c4e9729136f31a84a9,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 226
+      value: 326
       objectReference: {fileID: 0}
     - target: {fileID: 224824918464960348, guid: ca910e968aec33c4e9729136f31a84a9,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -175
+      value: 0.000061035156
+      objectReference: {fileID: 0}
+    - target: {fileID: 224824918464960348, guid: ca910e968aec33c4e9729136f31a84a9,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -701.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 224824918464960348, guid: ca910e968aec33c4e9729136f31a84a9,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -429.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 224737037940644116, guid: ca910e968aec33c4e9729136f31a84a9,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -193.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 224737037940644116, guid: ca910e968aec33c4e9729136f31a84a9,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 106.64
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca910e968aec33c4e9729136f31a84a9, type: 2}
@@ -742,7 +766,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4907095804448992, guid: 340bd1d5394e9eb419fa72af56a8850d, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114850114234210864, guid: 340bd1d5394e9eb419fa72af56a8850d,
         type: 2}
@@ -907,7 +931,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4686323897931792, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114609564392810000, guid: a9140b6509c7b2141bcc994cf8e631a3,
         type: 2}
@@ -937,7 +961,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1672789712550830, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
       propertyPath: m_Name
-      value: comerciante (2)
+      value: Comerciante 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
@@ -1151,7 +1175,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1197821721392422, guid: 40e8ab4659a1ad249a4459bad97b4948, type: 2}
       propertyPath: m_Name
-      value: armada (1)
+      value: Armada 2
       objectReference: {fileID: 0}
     - target: {fileID: 58600225511469768, guid: 40e8ab4659a1ad249a4459bad97b4948,
         type: 2}
@@ -1203,11 +1227,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4545488382102858, guid: 625000b06e5ccb5438cb2b0c6995a6c4, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1874513242051252, guid: 625000b06e5ccb5438cb2b0c6995a6c4, type: 2}
       propertyPath: m_Name
-      value: pirata (2)
+      value: Pirata 3
       objectReference: {fileID: 0}
     - target: {fileID: 114876739117254386, guid: 625000b06e5ccb5438cb2b0c6995a6c4,
         type: 2}
@@ -1260,7 +1284,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4545488382102858, guid: 625000b06e5ccb5438cb2b0c6995a6c4, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 114876739117254386, guid: 625000b06e5ccb5438cb2b0c6995a6c4,
         type: 2}
@@ -1273,6 +1297,10 @@ Prefab:
       propertyPath: mundo
       value: 
       objectReference: {fileID: 1617200413}
+    - target: {fileID: 1874513242051252, guid: 625000b06e5ccb5438cb2b0c6995a6c4, type: 2}
+      propertyPath: m_Name
+      value: Pirata 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 625000b06e5ccb5438cb2b0c6995a6c4, type: 2}
   m_IsPrefabParent: 0
@@ -1313,7 +1341,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4686323897931792, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 114609564392810000, guid: a9140b6509c7b2141bcc994cf8e631a3,
         type: 2}
@@ -1326,6 +1354,10 @@ Prefab:
       value: 
       objectReference: {fileID: 4686323897931792, guid: a9140b6509c7b2141bcc994cf8e631a3,
         type: 2}
+    - target: {fileID: 1672789712550830, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
+      propertyPath: m_Name
+      value: Comerciante 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
   m_IsPrefabParent: 0
@@ -1446,11 +1478,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4686323897931792, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1672789712550830, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
       propertyPath: m_Name
-      value: comerciante (3)
+      value: Comerciante 3
       objectReference: {fileID: 0}
     - target: {fileID: 114609564392810000, guid: a9140b6509c7b2141bcc994cf8e631a3,
         type: 2}
@@ -1500,7 +1532,7 @@ Transform:
   - {fileID: 289950339}
   - {fileID: 1201963349}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2062691751 stripped
 Transform:
@@ -1544,7 +1576,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4518208253646046, guid: 0b1cfef86203fd642ab4a8e67674f0bc, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 14
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0b1cfef86203fd642ab4a8e67674f0bc, type: 2}
@@ -1586,11 +1618,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4686323897931792, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1672789712550830, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
       propertyPath: m_Name
-      value: comerciante (4)
+      value: Comerciante 4
       objectReference: {fileID: 0}
     - target: {fileID: 114609564392810000, guid: a9140b6509c7b2141bcc994cf8e631a3,
         type: 2}
