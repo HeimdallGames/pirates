@@ -42,6 +42,7 @@ public class showPanel : MonoBehaviour
     {
         if (comerciante != null)
         {
+            nameText.text = comerciante.name;
             oroText.text = comerciante.getOro().ToString();
             maderaText.text = comerciante.getMadera().ToString();
             comidaText.text = comerciante.getComida().ToString();

@@ -18,34 +18,32 @@ public class Mundo : MonoBehaviour
         
         islasClon.Sort((y,x ) => (x.posibleFelicidad(comerciante_)).CompareTo(y.posibleFelicidad(comerciante_)));
 
-        foreach (Isla isla in islasClon)
+        /*foreach (Isla isla in islasClon)
         {
-            Debug.Log("Final" + " " + isla.transform.name);
-        }
-        int randomIsland = Random.Range(0, 1);
-            Isla returnIsla = islasClon[randomIsland];
-            
-           
-            if (ultimaLista == returnIsla)
+            Debug.Log("Isla " +  isla.transform.name + " para comerciante " + comerciante_.name + " da " + isla.posibleFelicidad(comerciante_) + " felicidad");
+        }*/
 
+        int randomIsland = Random.Range(0, 1);
+        Isla returnIsla = islasClon[randomIsland];
+            
+        if (ultimaLista == returnIsla)
+        {
+            if (randomIsland == 0)
             {
-                if (randomIsland == 0)
-                {
-                return islasClon[1];                
-               
-                }
-                else
-                {
-                    return islasClon[0];
-                }
+                returnIsla = islasClon[1];     
             }
             else
             {
-
-                return returnIsla;
+                returnIsla = islasClon[0];
             }
-        
+        }
+
+       // Debug.Log("Comerciante " + comerciante_.name + " viaja a " + returnIsla.transform.name + " por " + returnIsla.posibleFelicidad(comerciante_) + " felicidad.");
+
+        returnIsla.aumentarCompetencia();
+        return returnIsla;
     }
+
     public void addRespawn(Transform element, Vector3 pos, Quaternion rot, int espera)
     {
         respawnListPositions.Add(pos);

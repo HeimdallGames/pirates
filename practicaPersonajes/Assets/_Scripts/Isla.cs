@@ -27,6 +27,7 @@ public class Isla : MonoBehaviour
     private int valorEstandar = 10;
     private int valorAlto = 25;
     private int valorBajo = 5;
+    [SerializeField] private float competencia = 1.0f;
 
     [SerializeField] private int precioMadera;
     [SerializeField] private int precioComida;
@@ -62,9 +63,9 @@ public class Isla : MonoBehaviour
             if (tipoActual != tipos.COMERCIO)
                 beneficios = 1000000;
         }
-        felicidad = ((60/distancia) + 40 * beneficios) / 100;
+        felicidad = ((60/distancia) + (40*beneficios)) / (100 * competencia);
         //felicidad = (beneficios) / 100;
-        Debug.Log("FELICIDAD" + " " + transform.name + " " + comerciante_.transform.name+ " " +  felicidad + " " + tipoActual);
+        //Debug.Log("FELICIDAD" + " " + transform.name + " " + comerciante_.transform.name+ " " +  felicidad + " " + tipoActual);
         return Mathf.CeilToInt(felicidad);
     }
 
@@ -133,9 +134,11 @@ public class Isla : MonoBehaviour
                 this.oro -= comerciante.getComida() * precioComida;
                 comerciante.setComida(0);
             }
+            
         }
         else { obtenerRecursos(comerciante); }
 
+        reducirCompetencia();
     }
 
     void Update()
@@ -163,7 +166,6 @@ public class Isla : MonoBehaviour
 
     void Awake() 
     {
-        Debug.Log("AGUAQUE");
         this.gameObject.GetComponent<SpriteRenderer>().sprite = null;
 
         if (islaComercio)
@@ -181,10 +183,6 @@ public class Isla : MonoBehaviour
         precioMadera = valorEstandar;
         precioComida = valorEstandar;
         precioTabaco = valorEstandar;
-
-        
-             Debug.Log("AGUAQUE FIN");
-
     }
 
 
@@ -324,4 +322,14 @@ public class Isla : MonoBehaviour
 
         tiempo += UnityEngine.Time.deltaTime;
     }
+
+    public void aumentarCompetencia()
+    {
+        competencia *= 10;
+    }
+    public void reducirCompetencia()
+    {
+        competencia /= 10;
+    }
+
 }

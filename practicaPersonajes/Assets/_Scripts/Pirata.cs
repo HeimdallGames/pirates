@@ -42,7 +42,7 @@ public class Pirata : MonoBehaviour
         {
             collisionObject = listaColisiones[0];
             listaColisiones.RemoveAt(0);
-            MonoBehaviour.print("sacado collision object");
+            //MonoBehaviour.print("sacado collision object");
         }
         stateUpdate();
     }
@@ -76,7 +76,7 @@ public class Pirata : MonoBehaviour
 
     private void updateDestruido()
     {
-        MonoBehaviour.print("PIRATA destruido");
+        MonoBehaviour.print(this.name + " destruido");
         mundo.addRespawn(prefab, transform.position, transform.rotation, 4);
         Destroy(gameObject);
     }
@@ -102,7 +102,7 @@ public class Pirata : MonoBehaviour
     {
         if (collisionObject != null)
         {
-            MonoBehaviour.print("analizado collison object");
+            //MonoBehaviour.print("analizado collison object");
             target = collisionObject.GetComponent<Comerciante>();
             if (!target.desvalijado)
             {
@@ -133,10 +133,10 @@ public class Pirata : MonoBehaviour
     {
         if (coll.transform != null && coll.transform.gameObject.tag == "Comerciante")
         {
-            MonoBehaviour.print("collision detectada por PIRATA no nula");
+            //MonoBehaviour.print("collision detectada por PIRATA no nula");
             listaColisiones.Add(coll.transform.gameObject);
         }
-        MonoBehaviour.print("collision detectada por PIRATA");
+        //MonoBehaviour.print("collision detectada por PIRATA");
     }
 
     //COMUNICACION

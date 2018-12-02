@@ -27,7 +27,6 @@ public class Comerciante : MonoBehaviour
 
     //Recursos
     [SerializeField] private int oro = 0;
-
     [SerializeField] private int madera = 0;
     [SerializeField] private int tabaco = 0;
     [SerializeField] private int comida = 0;
@@ -45,6 +44,7 @@ public class Comerciante : MonoBehaviour
         canvasRecursos = new CanvasRecursos(canvas, oro, madera, tabaco, comida);
         esperando = true;
         islaDestino = mundo.islas[Random.Range(0,mundo.islas.Count)];
+        islaDestino.aumentarCompetencia();
         cambiarEstado(EstadoComerciante.VIAJANDO_OTRA_LISTA);
     }
 
@@ -87,7 +87,93 @@ public class Comerciante : MonoBehaviour
         }
         estadoActual = nuevoEstado;
     }
+    
 
+    private void updateEsperando()
+    {
+        if (esperando == false)
+        {
+            cambiarEstado(EstadoComerciante.COMERCIANDO);
+        }
+    }
+
+    private void updateComerciando()
+    {
+        islaDestino.comerciarConBarco(this);
+        MonoBehaviour.print("El comerciante: " + transform.name + " ha comerciado con la isla: " + islaDestino.name + ".");
+        cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
+    }
+    private void updateBuscando()
+    {
+        islaDestino = mundo.obtenerNuevoDestino(this, islaDestino);
+        cambiarEstado(EstadoComerciante.VIAJANDO_OTRA_LISTA);
+        MonoBehaviour.print(transform.name + " se dirige a su nuevo destino: " + islaDestino.name + ".");
+    }
+    private void updateViajando()
+    {
+        if (movimiento.updateMovement(islaDestino.getActualPos()))
+        {
+            islaDestino.avisarBarcoEsperando(this);
+            if (salvadoPor != null)
+            {
+                salvadoPor.dejarDeAcompanar();
+            }
+            cambiarEstado(EstadoComerciante.ESPERAR_COMERCIO);
+        }
+    }
+
+    private void updateHuir()
+    {
+        if (movimiento.huir(huyendoPirata.getMovimiento().getPos()) > distanciaEscape)
+        {
+            huyendoPirata.cambiarEstado(Pirata.EstadoPirata.ESPERAR_BARCO);
+            cambiarEstado(EstadoComerciante.VIAJANDO_OTRA_LISTA);
+        }
+    }
+
+    private void updateAtracado()
+    {
+        setComida(0);
+        setTabaco(0);
+        setOro(0);
+        setMadera(0);
+        MonoBehaviour.print(this.name + " atracado");
+        cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
+    }
+
+
+    //USAR PARA COMUNICARSE
+    public void atracar()
+    {
+        cambiarEstado(EstadoComerciante.ATRACADO);
+        islaDestino.reducirCompetencia();
+        MonoBehaviour.print("El comerciante: " + transform.name + " ha sido atracado.");
+    }
+    public void avisarEsPerseguido(Pirata pirata)
+    {
+        huyendoPirata = pirata;
+        cambiarEstado(EstadoComerciante.HUIR);
+        //MonoBehaviour.print("El comerciante: " + transform.name + " esta siendo perseguido.");
+    }
+
+    public void avisarEsSalvado(Armada armada)
+    {
+        cambiarEstado(EstadoComerciante.VIAJANDO_OTRA_LISTA);
+        salvadoPor = armada;
+    }
+    public Pirata perseguidoPor()
+    {
+        if (estadoActual == EstadoComerciante.HUIR)
+        {
+            return huyendoPirata;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    /*SETTERS & GETTERS*/
     public Movimiento getMovimiento()
     {
         return movimiento;
@@ -131,89 +217,6 @@ public class Comerciante : MonoBehaviour
     public void setEspera(bool estado)
     {
         this.esperando = estado;
-    }
-
-    private void updateEsperando()
-    {
-        if (esperando == false)
-        {
-            cambiarEstado(EstadoComerciante.COMERCIANDO);
-        }
-    }
-
-    private void updateComerciando()
-    {
-        islaDestino.comerciarConBarco(this);
-        MonoBehaviour.print("El comerciante: " + transform.name + " ha comerciado con la isla: " + islaDestino.name + ".");
-        cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
-    }
-    private void updateBuscando()
-    {
-        islaDestino = mundo.obtenerNuevoDestino(this, islaDestino);
-        cambiarEstado(EstadoComerciante.VIAJANDO_OTRA_LISTA);
-        MonoBehaviour.print("El comerciante: " + transform.name + " se dirige a su nuevo destino: " + islaDestino.name + ".");
-    }
-    private void updateViajando()
-    {
-        if (movimiento.updateMovement(islaDestino.getActualPos()))
-        {
-            islaDestino.avisarBarcoEsperando(this);
-            if (salvadoPor != null)
-            {
-                salvadoPor.dejarDeAcompanar();
-            }
-            cambiarEstado(EstadoComerciante.ESPERAR_COMERCIO);
-        }
-    }
-
-    private void updateHuir()
-    {
-        if (movimiento.huir(huyendoPirata.getMovimiento().getPos()) > distanciaEscape)
-        {
-            huyendoPirata.cambiarEstado(Pirata.EstadoPirata.ESPERAR_BARCO);
-            cambiarEstado(EstadoComerciante.VIAJANDO_OTRA_LISTA);
-        }
-    }
-
-    private void updateAtracado()
-    {
-        setComida(0);
-        setTabaco(0);
-        setOro(0);
-        setMadera(0);
-        MonoBehaviour.print("comerciante atracado");
-        cambiarEstado(EstadoComerciante.BUSCANDO_ISLA);
-    }
-
-
-    //USAR PARA COMUNICARSE
-    public void atracar()
-    {
-        cambiarEstado(EstadoComerciante.ATRACADO);
-        MonoBehaviour.print("El comerciante: " + transform.name + " ha sido atacado.");
-    }
-    public void avisarEsPerseguido(Pirata pirata)
-    {
-        huyendoPirata = pirata;
-        cambiarEstado(EstadoComerciante.HUIR);
-        MonoBehaviour.print("El comerciante: " + transform.name + " esta siendo perseguido.");
-    }
-
-    public void avisarEsSalvado(Armada armada)
-    {
-        cambiarEstado(EstadoComerciante.VIAJANDO_OTRA_LISTA);
-        salvadoPor = armada;
-    }
-    public Pirata perseguidoPor()
-    {
-        if (estadoActual == EstadoComerciante.HUIR)
-        {
-            return huyendoPirata;
-        }
-        else
-        {
-            return null;
-        }
     }
 
 }
