@@ -180,6 +180,11 @@ Prefab:
       propertyPath: speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 114810131969779334, guid: 40e8ab4659a1ad249a4459bad97b4948,
+        type: 2}
+      propertyPath: mundo
+      value: 
+      objectReference: {fileID: 1617200413}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 40e8ab4659a1ad249a4459bad97b4948, type: 2}
   m_IsPrefabParent: 0
@@ -226,6 +231,11 @@ Prefab:
       propertyPath: m_Name
       value: isla (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
+        type: 2}
+      propertyPath: mundo
+      value: 
+      objectReference: {fileID: 1617200413}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb57bed195730e547ab3aae95f9f6b57, type: 2}
   m_IsPrefabParent: 0
@@ -438,6 +448,11 @@ Prefab:
       propertyPath: islaComercio
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
+        type: 2}
+      propertyPath: mundo
+      value: 
+      objectReference: {fileID: 1617200413}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb57bed195730e547ab3aae95f9f6b57, type: 2}
   m_IsPrefabParent: 0
@@ -600,6 +615,16 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 534669904}
+    - target: {fileID: 224824918464960348, guid: ca910e968aec33c4e9729136f31a84a9,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 226
+      objectReference: {fileID: 0}
+    - target: {fileID: 224824918464960348, guid: ca910e968aec33c4e9729136f31a84a9,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -175
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca910e968aec33c4e9729136f31a84a9, type: 2}
   m_IsPrefabParent: 0
@@ -667,6 +692,11 @@ Prefab:
       propertyPath: islaComercio
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
+        type: 2}
+      propertyPath: mundo
+      value: 
+      objectReference: {fileID: 1617200413}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb57bed195730e547ab3aae95f9f6b57, type: 2}
   m_IsPrefabParent: 0
@@ -826,6 +856,11 @@ Prefab:
       propertyPath: m_Name
       value: isla (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
+        type: 2}
+      propertyPath: mundo
+      value: 
+      objectReference: {fileID: 1617200413}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: cb57bed195730e547ab3aae95f9f6b57, type: 2}
@@ -1011,6 +1046,11 @@ Prefab:
       propertyPath: islaComercio
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
+        type: 2}
+      propertyPath: mundo
+      value: 
+      objectReference: {fileID: 1617200413}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb57bed195730e547ab3aae95f9f6b57, type: 2}
   m_IsPrefabParent: 0
@@ -1057,6 +1097,11 @@ Prefab:
       propertyPath: m_Name
       value: isla (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
+        type: 2}
+      propertyPath: mundo
+      value: 
+      objectReference: {fileID: 1617200413}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cb57bed195730e547ab3aae95f9f6b57, type: 2}
   m_IsPrefabParent: 0
@@ -1113,6 +1158,11 @@ Prefab:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114810131969779334, guid: 40e8ab4659a1ad249a4459bad97b4948,
+        type: 2}
+      propertyPath: mundo
+      value: 
+      objectReference: {fileID: 1617200413}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 40e8ab4659a1ad249a4459bad97b4948, type: 2}
   m_IsPrefabParent: 0
@@ -1159,6 +1209,17 @@ Prefab:
       propertyPath: m_Name
       value: pirata (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 114876739117254386, guid: 625000b06e5ccb5438cb2b0c6995a6c4,
+        type: 2}
+      propertyPath: mundo
+      value: 
+      objectReference: {fileID: 1617200413}
+    - target: {fileID: 114876739117254386, guid: 625000b06e5ccb5438cb2b0c6995a6c4,
+        type: 2}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 4545488382102858, guid: 625000b06e5ccb5438cb2b0c6995a6c4,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 625000b06e5ccb5438cb2b0c6995a6c4, type: 2}
   m_IsPrefabParent: 0
@@ -1259,6 +1320,12 @@ Prefab:
       propertyPath: mundo
       value: 
       objectReference: {fileID: 1617200413}
+    - target: {fileID: 114609564392810000, guid: a9140b6509c7b2141bcc994cf8e631a3,
+        type: 2}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 4686323897931792, guid: a9140b6509c7b2141bcc994cf8e631a3,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
   m_IsPrefabParent: 0
@@ -1328,6 +1395,11 @@ Prefab:
       propertyPath: islaComercio
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114158270929360106, guid: cb57bed195730e547ab3aae95f9f6b57,
+        type: 2}
+      propertyPath: mundo
+      value: 
+      objectReference: {fileID: 1617200413}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: cb57bed195730e547ab3aae95f9f6b57, type: 2}
@@ -1385,6 +1457,12 @@ Prefab:
       propertyPath: mundo
       value: 
       objectReference: {fileID: 1617200413}
+    - target: {fileID: 114609564392810000, guid: a9140b6509c7b2141bcc994cf8e631a3,
+        type: 2}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 4686323897931792, guid: a9140b6509c7b2141bcc994cf8e631a3,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
   m_IsPrefabParent: 0
@@ -1519,6 +1597,12 @@ Prefab:
       propertyPath: mundo
       value: 
       objectReference: {fileID: 1617200413}
+    - target: {fileID: 114609564392810000, guid: a9140b6509c7b2141bcc994cf8e631a3,
+        type: 2}
+      propertyPath: prefab
+      value: 
+      objectReference: {fileID: 4686323897931792, guid: a9140b6509c7b2141bcc994cf8e631a3,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a9140b6509c7b2141bcc994cf8e631a3, type: 2}
   m_IsPrefabParent: 0
